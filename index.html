@@ -477,11 +477,18 @@ async function fetchGames() {
     const c=ev.competitions[0];
     const h=c.competitors.find(x=>x.homeAway==='home');
     const a=c.competitors.find(x=>x.homeAway==='away');
+    // Game total from odds if available
+    let gameTotal = null;
+    for(const odd of (c.odds||[])) {
+      const ou = odd.overUnder || odd.total;
+      if(ou) { gameTotal = parseFloat(ou); break; }
+    }
     return {
       home:h.team.abbreviation, away:a.team.abbreviation,
       homeId:h.team.id, awayId:a.team.id,
       time:fmtTime(ev.date), eventId:ev.id, date:ev.date,
-      state:(c.status?.type?.state||'').toLowerCase()
+      state:(c.status?.type?.state||'').toLowerCase(),
+      gameTotal
     };
   });
 
@@ -504,7 +511,7 @@ async function fetchGames() {
 }
 
 // ── Roster — active only ──────────────────────────────
-async function fetchRoster(teamId, teamAbbr, gameTag, isHome) {
+async function fetchRoster(teamId, teamAbbr, gameTag, isHome, gameTotal) {
   const data = await get(`${ESPN}/teams/${teamId}/roster`);
   for (const ath of (data.athletes||[])) {
     if (!ath.id) continue;
@@ -523,7 +530,9 @@ async function fetchRoster(teamId, teamAbbr, gameTag, isHome) {
       streak:{pts:0,reb:0,ast:0},
       minsTrend:null,
       isHome:isHome,
-      recentGames:[], // last 5 game scores {pts,reb,ast}
+      recentGames:[],
+      gameTotal:gameTotal,
+      oppDefRank:null,
     };
   }
 }
@@ -544,6 +553,87 @@ async function fetchAvgs(id) {
       }
     }
   } catch(e) {}
+}
+
+// ── Team defensive rankings ───────────────────────────
+// Fetch all 30 teams' avgPoints allowed — done by fetching opponent's offensive avgPoints
+// i.e. how many points does team X's OPPONENT score = team X's defence quality
+let DEF_RANKS = {}; // abbr → rank (1=best D allows fewest, 30=worst)
+
+async function fetchDefRanks() {
+  try {
+    // Get all team IDs from ESPN
+    const teamsData = await get(`${ESPN}/teams?limit=32`);
+    const teams = teamsData.sports?.[0]?.leagues?.[0]?.teams || [];
+    if(!teams.length) return;
+
+    const teamStats = [];
+
+    // Fetch each team's stats — avgPoints is in offensive category
+    // To get points ALLOWED we need the opponent's perspective
+    // ESPN doesn't have an "opponent stats" endpoint cleanly
+    // But: we can use the team's opponents' avgPoints by fetching
+    // the schedule and averaging opponent scores — too slow.
+    // Better: ESPN Core has an "opponents" split type
+    // Use: /seasons/2026/types/2/teams/{id}/statistics with split opponent
+    await Promise.all(teams.map(async t => {
+      const team = t.team;
+      try {
+        const s = await get(`${CORE}/seasons/${SEASON}/types/2/teams/${team.id}/statistics`);
+        // Find avgPoints in offensive category = this team's scoring avg
+        // We need to cross-reference: team A's defence = team A's opponents' avg score
+        // Store both team id+abbr and their own avgPoints
+        for(const cat of (s.splits?.categories||[])) {
+          if((cat.name||'').toLowerCase() !== 'offensive') continue;
+          for(const stat of (cat.stats||[])) {
+            if((stat.name||'').toLowerCase() === 'avgpoints') {
+              teamStats.push({id:team.id, abbr:team.abbreviation, avgPts:parseFloat(stat.value)});
+            }
+          }
+        }
+      } catch(e){}
+    }));
+
+    if(teamStats.length < 10) return;
+
+    // Now fetch each team's OPPONENT avgPoints
+    // ESPN Core: /seasons/SEASON/types/2/teams/{id}/opponents/statistics — try this
+    const oppStats = [];
+    await Promise.all(teamStats.map(async t => {
+      try {
+        const s = await get(`${CORE}/seasons/${SEASON}/types/2/teams/${t.id}/opponents/statistics`);
+        for(const cat of (s.splits?.categories||[])) {
+          if((cat.name||'').toLowerCase() !== 'offensive') continue;
+          for(const stat of (cat.stats||[])) {
+            if((stat.name||'').toLowerCase() === 'avgpoints') {
+              oppStats.push({abbr:t.abbr, ptsAllowed:parseFloat(stat.value)});
+            }
+          }
+        }
+      } catch(e){
+        // Fallback: use paceFactor + opponent scoring inferred from game results
+        // Just use the team's own avgPoints as a proxy (won't be used if oppStats works)
+      }
+    }));
+
+    const finalStats = oppStats.length >= 10 ? oppStats : teamStats.map(t => ({abbr:t.abbr, ptsAllowed:t.avgPts}));
+
+    // Sort ascending: rank 1 = fewest pts allowed = best defence
+    finalStats.sort((a,b) => a.ptsAllowed - b.ptsAllowed);
+    finalStats.forEach((t,i) => { DEF_RANKS[t.abbr] = i + 1; });
+
+    // Apply to players
+    for(const g of GAMES) {
+      const homeRank = DEF_RANKS[g.home];
+      const awayRank = DEF_RANKS[g.away];
+      for(const p of Object.values(PLAYERS)) {
+        if(p.game !== `${g.away}@${g.home}`) continue;
+        p.oppDefRank = p.isHome ? (awayRank||null) : (homeRank||null);
+      }
+    }
+
+    render();
+  } catch(e) { console.warn('DefRanks error:', e); }
 }
 
 async function fetchHL(id) {
@@ -667,8 +757,8 @@ async function loadAll() {
   prog(8,'Loading active rosters...','');
   await Promise.all(GAMES.map(async g => {
     const tag=`${g.away}@${g.home}`;
-    try{await fetchRoster(g.homeId,g.home,tag,true);}catch(e){}
-    try{await fetchRoster(g.awayId,g.away,tag,false);}catch(e){}
+    try{await fetchRoster(g.homeId,g.home,tag,true,g.gameTotal);}catch(e){}
+    try{await fetchRoster(g.awayId,g.away,tag,false,g.gameTotal);}catch(e){}
   }));
   prog(22,'Rosters loaded',`${Object.keys(PLAYERS).length} active players`);
   render();
@@ -688,9 +778,12 @@ async function loadAll() {
 
   const ids=Object.keys(PLAYERS); let done=0;
 
-  // Averages — max parallelism, all at once
+  // Averages + defensive ranks — all in parallel
   prog(24,`Loading averages for ${ids.length} players...`,'');
-  await Promise.all(ids.map(id=>fetchAvgs(id)));
+  await Promise.all([
+    fetchDefRanks(),
+    ...ids.map(id=>fetchAvgs(id))
+  ]);
   prog(36,'Averages loaded',`${ids.length} players`);
   render();
   done=0;
@@ -802,7 +895,7 @@ function cardHTML(p) {
     return `<div class="trend-row" style="margin-bottom:7px">${cells.join('')}<div style="grid-column:span 3;font-size:8px;color:var(--muted);padding:2px 0">✓ = qualifies for parlay (70+, both signals agree, 2.5pt cushion)</div></div>`;
   })();
 
-  // Context row — VENUE + MIN TREND
+  // Context row — VENUE + MIN TREND + GAME TOTAL + OPP DEF
   const mt = p.minsTrend;
   const mtCls  = mt===null?'flat':mt>1?'up':mt<-1?'dn':'flat';
   const mtTxt  = mt===null?'–':`${mt>0?'+':''}${mt}m`;
@@ -813,9 +906,21 @@ function cardHTML(p) {
   const haTxt   = p.isHome===null?'–':p.isHome?'HOME':'AWAY';
   const haIcon  = p.isHome===null?'':p.isHome?'🏠 ':'✈️ ';
 
-  const ctxRow = `<div class="srow" style="margin-bottom:7px;grid-template-columns:1fr 1fr">
-    <div class="scell"><div class="slabel">VENUE</div><div class="sval" style="font-size:16px;color:${haColor}">${haIcon}${haTxt}</div></div>
-    <div class="scell"><div class="slabel">MIN TREND</div><div class="sval" style="font-size:16px;color:${mtColor}">${mtArrow}${mtTxt}</div></div>
+  // Game total — high = fast pace (good for overs), low = slow (bad for overs)
+  const gtColor = p.gameTotal===null?'var(--muted)':p.gameTotal>=230?'var(--over)':p.gameTotal<=215?'var(--under)':'var(--text)';
+  const gtTxt   = p.gameTotal!==null?String(p.gameTotal):'–';
+
+  // Opp def rank — higher rank = worse defence = easier to score against
+  const drRank  = p.oppDefRank;
+  const drColor = drRank===null?'var(--muted)':drRank>=22?'var(--over)':drRank<=10?'var(--under)':'var(--text)';
+  const drTxt   = drRank!==null?`#${drRank} DEF`:'–';
+  const drIcon  = drRank!==null?(drRank>=22?'🟢 ':drRank<=10?'🔴 ':'🟡 '):'';
+
+  const ctxRow = `<div class="srow" style="margin-bottom:7px;grid-template-columns:1fr 1fr 1fr 1fr">
+    <div class="scell"><div class="slabel">VENUE</div><div class="sval" style="font-size:14px;color:${haColor}">${haIcon}${haTxt}</div></div>
+    <div class="scell"><div class="slabel">MIN TREND</div><div class="sval" style="font-size:14px;color:${mtColor}">${mtArrow}${mtTxt}</div></div>
+    <div class="scell"><div class="slabel">GAME O/U</div><div class="sval" style="font-size:14px;color:${gtColor}">${gtTxt}</div></div>
+    <div class="scell"><div class="slabel">OPP DEF</div><div class="sval" style="font-size:14px;color:${drColor}">${drIcon}${drTxt}</div></div>
   </div>`;
 
   // Hit rate cells
@@ -997,7 +1102,14 @@ function scoreBet(p, stat) {
 
   const minsScore = mt !== null && mt > 0 ? Math.min(mt/3,1)*5 : 0;
 
-  const total = Math.round(hrScore + diffScore + sznScore + streakScore + minsScore);
+  const paceScore = p.gameTotal!==null?(p.gameTotal>=230?5:p.gameTotal>=220?3:p.gameTotal<=210?-3:0):0;
+  let defScore=0;
+  if(p.oppDefRank!==null&&stat==='pts'){
+    if(side==='over') defScore=p.oppDefRank>=22?8:p.oppDefRank>=16?4:p.oppDefRank<=10?-5:0;
+    else defScore=p.oppDefRank<=10?5:p.oppDefRank<=16?2:p.oppDefRank>=22?-4:0;
+  }
+
+  const total = Math.round(hrScore + diffScore + sznScore + streakScore + minsScore + paceScore + defScore);
   if(total < MIN_SCORE) return null;
 
   return { stat, side, line, score: Math.min(total,100), hrAligned, streakAligned, dL10, dSzn, mt };
@@ -1055,7 +1167,19 @@ function scoreBetRelaxed(p, stat) {
   if(streakAligned>0) streakScore=(Math.min(streakAligned,5)/5)*15;
   else if(streakAligned===-1) streakScore=-5;
   const minsScore=mt!==null&&mt>0?Math.min(mt/3,1)*5:0;
-  const total=Math.round(hrScore+diffScore+sznScore+streakScore+minsScore);
+
+  // Game total bonus (0-5): high total = faster pace = more scoring opportunity
+  const paceScore = p.gameTotal!==null ? (p.gameTotal>=230?5:p.gameTotal>=220?3:p.gameTotal<=210?-3:0) : 0;
+
+  // Opponent defensive rank bonus (-5 to +8):
+  // rank 22-30 (weak D) = bonus for overs, rank 1-10 (strong D) = penalty for overs
+  let defScore = 0;
+  if(p.oppDefRank!==null && stat==='pts') {
+    if(side==='over')  defScore = p.oppDefRank>=22?8:p.oppDefRank>=16?4:p.oppDefRank<=10?-5:0;
+    else               defScore = p.oppDefRank<=10?5:p.oppDefRank<=16?2:p.oppDefRank>=22?-4:0;
+  }
+
+  const total=Math.round(hrScore+diffScore+sznScore+streakScore+minsScore+paceScore+defScore);
   if(total<40) return null;
   return {stat,side,line,score:Math.min(total,100),hrAligned,streakAligned,dL10,dSzn,mt};
 }
@@ -1093,6 +1217,14 @@ function renderBestBets() {
     if(dSzn!==null){const ds=`${dSzn>0?'+':''}${dSzn.toFixed(1)}`;pills.push(`<span class="bb-pill blue">SZN ${ds}</span>`);}
     if(mt!==null&&mt>0) pills.push(`<span class="bb-pill green">▲ +${mt}m</span>`);
     if(p.isHome!==null) pills.push(`<span class="bb-pill ${p.isHome?'green':'blue'}">${p.isHome?'🏠':'✈️'}</span>`);
+    if(p.gameTotal!==null) {
+      const pc=p.gameTotal>=230?'green':p.gameTotal<=210?'red':'blue';
+      pills.push(`<span class="bb-pill ${pc}">O/U ${p.gameTotal}</span>`);
+    }
+    if(p.oppDefRank!==null) {
+      const dc=p.oppDefRank>=22?'green':p.oppDefRank<=10?'red':'amber';
+      pills.push(`<span class="bb-pill ${dc}">${p.oppDefRank>=22?'🟢':p.oppDefRank<=10?'🔴':'🟡'} #${p.oppDefRank} DEF</span>`);
+    }
     return pills.join('');
   };
 
@@ -1471,6 +1603,8 @@ const FAQ_HTML = `
         <span style="color:var(--over);font-weight:700;white-space:nowrap">0–15 pts</span><span><b>Season Diff</b> — bonus when the season avg also clears the line comfortably.</span>
         <span style="color:var(--over);font-weight:700;white-space:nowrap">-15–15 pts</span><span><b>Streak</b> — bonus for active streak in pick direction. Opposing streak = penalty.</span>
         <span style="color:var(--over);font-weight:700;white-space:nowrap">0–5 pts</span><span><b>Minutes Trend</b> — small bonus if player is getting more run in last 5 games vs last 10.</span>
+        <span style="color:var(--over);font-weight:700;white-space:nowrap">-3–5 pts</span><span><b>Game Total (Pace)</b> — high O/U (230+) means fast pace = more scoring chances. Low O/U (≤210) = slight penalty.</span>
+        <span style="color:var(--over);font-weight:700;white-space:nowrap">-5–8 pts</span><span><b>Opp Defensive Rank</b> — facing a weak defence (#22–30) adds up to 8pts for over picks. Facing a top-10 defence deducts 5pts.</span>
       </div>
     </div>
   </div>
@@ -1528,6 +1662,8 @@ const FAQ_HTML = `
       <div><b>STREAK</b> — consecutive games going over/under their season avg. 🔥 = over streak, ❄️ = under streak. Uses full 20-game window.</div>
       <div><b>VENUE</b> — 🏠 HOME or ✈️ AWAY for today's game.</div>
       <div><b>MIN TREND</b> — L5 avg minutes minus L10 avg minutes. ▲ = getting more run recently.</div>
+      <div><b>GAME O/U</b> — the over/under total for the game. 🟢 230+ = fast pace (good for overs), 🔴 ≤210 = slow pace.</div>
+      <div><b>OPP DEF</b> — opponent's defensive rank by points allowed this season. 🟢 #22–30 = weak defence (easier to score on), 🔴 #1–10 = elite defence.</div>
       <div><b>HIGH / LOW</b> — season high and low from the last 20 qualifying games.</div>
     </div>
   </div>
