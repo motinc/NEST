@@ -88,6 +88,7 @@ select option{background:#1a1d26}
 .bb-sidebar{height:100%;display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden}
 .bb-sidebar-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg3)}
 .bb-sidebar-hdr span{font-weight:400;font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none}
+/* ── Export Modal ── */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinning{display:inline-block;animation:spin .6s linear infinite}
 .bb-scroll{overflow-y:auto;flex:1;padding:10px}
@@ -257,6 +258,7 @@ select option{background:#1a1d26}
 </div>
 <div id="faq-overlay" style="display:none;position:fixed;inset:0;z-index:499" onclick="toggleFaq()"></div>
 
+
 <main>
   <div class="day-nav">
     <button class="day-nav-btn" id="day-prev" onclick="changeDay(-1)" title="Previous day">‹</button>
@@ -317,7 +319,12 @@ select option{background:#1a1d26}
 
     <!-- Right: Best Bets Sidebar -->
     <div class="bb-sidebar">
-      <div class="bb-sidebar-hdr">⭐ Best Bets <span>Top 10 · auto-scored</span><button id="bb-refresh-btn" onclick="refreshBestBets()" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:var(--accent);border-radius:5px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .4s">↻ REFRESH</button></div>
+      <div class="bb-sidebar-hdr">⭐ Best Bets
+        <div style="display:flex;gap:5px">
+          <button id="bb-refresh-btn" onclick="refreshBestBets()" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:var(--accent);border-radius:5px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .4s">↻ REFRESH</button>
+
+        </div>
+      </div>
       <div class="bb-scroll" id="bb-grid"><div class="bb-empty">Loading players...</div></div>
     </div>
   </div><!-- end content-wrap -->
@@ -1194,6 +1201,7 @@ function scoreBetRelaxed(p, stat) {
   return {stat,side,line,score:Math.min(total,100),hrAligned,streakAligned,dL10,dSzn,mt};
 }
 
+
 function refreshBestBets() {
   const btn = document.getElementById('bb-refresh-btn');
   if(!btn) { renderBestBets(); return; }
@@ -1482,14 +1490,14 @@ function refreshLines() {
   badge.innerHTML = '<span class="spinning">↻</span> WORKING';
   badge.className = 'badge gw';
   badge.style.pointerEvents = 'none';
-  // Clear lines and refetch
+  // Clear ALL lines including manual — reset everything to DraftKings
   PROP_LINES = {};
   Object.values(PLAYERS).forEach(p => {
-    if(p.lineSource !== 'Manual') {
-      p.lines = {pts:'',reb:'',ast:''};
-      p.lineSource = null;
-    }
+    p.lines = {pts:'',reb:'',ast:''};
+    p.lineSource = null;
   });
+  // Also clear localStorage manual overrides
+  try { localStorage.removeItem('nest_lines'); } catch(e) {}
   fetchAllProps().then(() => {
     lastRefresh = new Date();
     badge.innerHTML = '✓ LINES UPDATED';
