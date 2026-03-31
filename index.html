@@ -1684,7 +1684,9 @@ const FAQ_HTML = `
       <div><span style="color:var(--muted);font-style:italic">65% hit</span> — failed: hit rate below 70%.</div>
       <div><span style="color:var(--muted);font-style:italic">signals split</span> — failed: L10 and season avg point different directions.</div>
       <div><span style="color:var(--muted);font-style:italic">1.8pt gap</span> — failed: cushion below 2.5pt minimum.</div>
+      <div><span style="color:var(--muted);font-style:italic">low score</span> — passed all three hard rules (70%+ hit rate, signals agree, 2.5pt cushion) but the final score came in under 50. Usually means the numbers are borderline — e.g. hit rate is exactly 70%, cushion is barely 2.6pts, no active streak, flat minutes. Everything technically qualifies but nothing is strong enough to push the score up.</div>
       <div><span style="color:var(--muted);font-style:italic">no line</span> — DraftKings line not yet loaded.</div>
+      <div><span style="color:var(--muted);font-style:italic">no data</span> — not enough game log data to calculate hit rate or L10 average yet.</div>
     </div>
   </div>
 
