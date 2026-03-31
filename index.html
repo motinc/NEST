@@ -34,8 +34,6 @@ main{max-width:1400px;margin:0 auto;padding:16px;height:calc(100vh - 56px);displ
 .search-input::placeholder{color:var(--muted)}
 select{background:var(--bg2);border:1px solid var(--border2);color:var(--text);padding:8px 10px;border-radius:6px;font-size:13px;font-family:'Barlow',sans-serif;outline:none}
 select option{background:#1a1d26}
-.fb{padding:5px 11px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;transition:all .15s;white-space:nowrap}
-.fb.on,.fb:hover{background:rgba(59,130,246,.15);border-color:var(--accent);color:var(--accent)}
 .legend{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
 .ldot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px;vertical-align:middle}
 .pbar-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:14px}
@@ -90,6 +88,8 @@ select option{background:#1a1d26}
 .bb-sidebar{height:100%;display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden}
 .bb-sidebar-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg3)}
 .bb-sidebar-hdr span{font-weight:400;font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinning{display:inline-block;animation:spin .6s linear infinite}
 .bb-scroll{overflow-y:auto;flex:1;padding:10px}
 .bb-scroll::-webkit-scrollbar{width:3px}
 .bb-scroll::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
@@ -234,7 +234,7 @@ select option{background:#1a1d26}
     <span class="badge gb" id="aest-clock">–</span>
     <button class="badge gw" id="scheme-btn" onclick="toggleSchemePicker()" style="cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;border:none">🎨 THEME</button>
     <button class="badge gw" onclick="toggleFaq()" style="cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;border:none">❓ FAQ</button>
-    <span class="badge gm" id="refresh-badge" style="cursor:pointer" onclick="PROP_LINES={};Object.values(PLAYERS).forEach(p=>{if(p.lineSource!=='Manual'){p.lines={pts:'',reb:'',ast:''};p.lineSource=null;}});fetchAllProps();lastRefresh=new Date();showToast('Refreshing lines...')">↻ LIVE</span>
+    <span class="badge gm" id="refresh-badge" style="cursor:pointer;transition:all .3s" onclick="refreshLines()">↻ LIVE</span>
     <span class="badge gm" id="lines-badge">LINES...</span>
     <span class="badge gg" id="status-badge">LOADING...</span>
     <span class="badge gw" id="date-badge">–</span>
@@ -270,6 +270,7 @@ select option{background:#1a1d26}
     <div class="controls">
     <input class="search-input" type="text" id="fsearch" placeholder="🔍  Search player..." oninput="render()">
     <select id="fsort" onchange="render()">
+      <option value="parlay_score">Sort: Parlay Score (best first)</option>
       <option value="diff_szn">Sort: Biggest diff — Season</option>
       <option value="diff_l10">Sort: Biggest diff — L10</option>
       <option value="diff_pts_szn">Sort: PTS diff — Season</option>
@@ -290,10 +291,13 @@ select option{background:#1a1d26}
       <option value="ast">Sort: Assists avg</option>
       <option value="name">Sort: Name A–Z</option>
     </select>
-    <button class="fb on" onclick="setF('all',this)">All</button>
-    <button class="fb" onclick="setF('over',this)">Overs</button>
-    <button class="fb" onclick="setF('under',this)">Unders</button>
-    <button class="fb" onclick="setF('lined',this)">Has Lines</button>
+    <select id="ffilter" onchange="setFFromSelect(this.value)">
+      <option value="all">Filter: All Players</option>
+      <option value="parlay">Filter: 🎯 Has Parlay (50+)</option>
+      <option value="lined">Filter: Has Lines</option>
+      <option value="over">Filter: Overs</option>
+      <option value="under">Filter: Unders</option>
+    </select>
   </div>
   <div class="legend">
     <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Avg vs Line:</span>
@@ -313,7 +317,7 @@ select option{background:#1a1d26}
 
     <!-- Right: Best Bets Sidebar -->
     <div class="bb-sidebar">
-      <div class="bb-sidebar-hdr">⭐ Best Bets <span>Top 10 · auto-scored</span><button onclick="renderBestBets()" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:var(--accent);border-radius:5px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px">↻ REFRESH</button></div>
+      <div class="bb-sidebar-hdr">⭐ Best Bets <span>Top 10 · auto-scored</span><button id="bb-refresh-btn" onclick="refreshBestBets()" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:var(--accent);border-radius:5px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .4s">↻ REFRESH</button></div>
       <div class="bb-scroll" id="bb-grid"><div class="bb-empty">Loading players...</div></div>
     </div>
   </div><!-- end content-wrap -->
@@ -684,8 +688,8 @@ async function fetchHL(id) {
       p.l10.ast = avg(l10games,'ast');
     }
 
-    // Store last 5 game scores for the expandable log
-    p.recentGames = games.slice(-5).reverse(); // most recent first
+    // Store last 10 game scores for the expandable log
+    p.recentGames = games.slice(-10).reverse(); // most recent first
 
     // Hit rate — % of last 10 games over the actual line (falls back to season avg)
     // Applied now vs season avg; recalculated vs line when lines load
@@ -814,7 +818,7 @@ function renderStrip() {
     const isPost = g.state==='post';
     const isLive = g.state==='in';
     const stateTxt = isLive ? '<span style="color:var(--over);font-weight:700"> ● LIVE</span>' : isPost ? '<span style="color:var(--muted)"> · FNL</span>' : '';
-    html+=`<div class="chip${isPost?' style="opacity:0.6"':''}" id="chip-${g.home}" onclick="setGame('${g.home}')"><div class="chip-teams">${g.away} <span style="color:var(--muted);font-size:10px">@</span> ${g.home}${stateTxt}</div><div class="chip-time">${g.time} AEST</div></div>`;
+    html+=`<div class="chip${isPost?' style="opacity:0.6"':''}" id="chip-${g.home}" onclick="setGame('${g.home}')"><div class="chip-teams">${g.away} <span style="color:var(--muted);font-size:10px">@</span> ${g.home}${stateTxt}</div><div class="chip-time">${g.time}</div></div>`;
   }
   document.getElementById('strip').innerHTML=html;
 }
@@ -942,7 +946,7 @@ function cardHTML(p) {
     return `<div class="trend-cell"><div class="trend-label">${stat.toUpperCase()} STREAK</div><div class="trend-val ${cls}">${arrow} ${s>0?'+':''}${s}</div></div>`;
   };
 
-  // Game log — last 5 games expandable
+  // Game log — last 10 games expandable
   const glRows = p.recentGames.map((g,i) => {
     const pLine=getLine(p,'pts'), rLine=getLine(p,'reb'), aLine=getLine(p,'ast');
     const pCls = pLine!==null?(g.pts>pLine?'hit':g.pts<pLine?'miss':'neu'):'neu';
@@ -958,7 +962,7 @@ function cardHTML(p) {
 
   const gameLog = p.recentGames.length ? `
     <button class="gamelog-toggle" onclick="toggleLog('${id}')">
-      <span>📋 Last 5 Games</span><span id="gl-arrow-${id}">▼</span>
+      <span>📋 Last 10 Games</span><span id="gl-arrow-${id}">▼</span>
     </button>
     <div class="gamelog-body" id="gl-${id}">
       <div class="gamelog-hdr"><span>#</span><span>PTS</span><span>REB</span><span>AST</span></div>
@@ -979,9 +983,14 @@ function render() {
   if(filt==='over')  list=list.filter(p=>['pts','reb','ast'].some(s=>{const d=getDiff(p,s);return d!==null&&d>0.9;}));
   if(filt==='under') list=list.filter(p=>['pts','reb','ast'].some(s=>{const d=getDiff(p,s);return d!==null&&d<-0.9;}));
   if(filt==='lined') list=list.filter(p=>['pts','reb','ast'].some(s=>getLine(p,s)!==null));
+  if(filt==='parlay') list=list.filter(p=>['pts','reb','ast'].some(s=>{ const b=scoreBetRelaxed(p,s); return b!==null&&b.score>=50; }));
   const maxSznDiff = p => Math.max(...['pts','reb','ast'].map(s=>{ const d=getDiff(p,s); return d===null?-1:Math.abs(d); }));
   const maxL10Diff = p => Math.max(...['pts','reb','ast'].map(s=>{ const d=getDiffL10(p,s); return d===null?-1:Math.abs(d); }));
-  if     (sort==='diff_szn')     list.sort((a,b)=>maxSznDiff(b)-maxSznDiff(a));
+  // Helper: best parlay score across all stats for a player
+  const bestParlayScore = p => Math.max(...['pts','reb','ast'].map(s=>{ const b=scoreBetRelaxed(p,s); return b?b.score:-1; }));
+
+  if     (sort==='parlay_score')  list.sort((a,b)=>bestParlayScore(b)-bestParlayScore(a));
+  else if(sort==='diff_szn')     list.sort((a,b)=>maxSznDiff(b)-maxSznDiff(a));
   else if(sort==='diff_l10')     list.sort((a,b)=>maxL10Diff(b)-maxL10Diff(a));
   else if(sort==='diff_pts_szn') list.sort((a,b)=>(getDiff(b,'pts')??-99)-(getDiff(a,'pts')??-99));
   else if(sort==='diff_pts_l10') list.sort((a,b)=>(getDiffL10(b,'pts')??-99)-(getDiffL10(a,'pts')??-99));
@@ -1030,7 +1039,8 @@ function toggleLog(id){
   const open=body.classList.toggle('open');
   if(arrow) arrow.textContent=open?'▲':'▼';
 }
-function setF(f,btn){filt=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');render();}
+function setF(f,btn){filt=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');render();}
+function setFFromSelect(val){filt=val;render();}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 
 // ── Best Bets scoring ─────────────────────────────────
@@ -1180,8 +1190,35 @@ function scoreBetRelaxed(p, stat) {
   }
 
   const total=Math.round(hrScore+diffScore+sznScore+streakScore+minsScore+paceScore+defScore);
-  if(total<40) return null;
+  if(total<50) return null;
   return {stat,side,line,score:Math.min(total,100),hrAligned,streakAligned,dL10,dSzn,mt};
+}
+
+function refreshBestBets() {
+  const btn = document.getElementById('bb-refresh-btn');
+  if(!btn) { renderBestBets(); return; }
+  // Spin and disable
+  btn.innerHTML = '<span class="spinning">↻</span> WORKING';
+  btn.style.background = 'rgba(245,158,11,0.15)';
+  btn.style.borderColor = 'rgba(245,158,11,0.4)';
+  btn.style.color = '#f59e0b';
+  btn.disabled = true;
+  // Short delay so animation is visible, then recalculate
+  setTimeout(() => {
+    renderBestBets();
+    btn.innerHTML = '✓ DONE';
+    btn.style.background = 'rgba(34,197,94,0.15)';
+    btn.style.borderColor = 'rgba(34,197,94,0.4)';
+    btn.style.color = '#22c55e';
+    btn.disabled = false;
+    // Reset back to normal after 1.5s
+    setTimeout(() => {
+      btn.innerHTML = '↻ REFRESH';
+      btn.style.background = 'rgba(59,130,246,0.15)';
+      btn.style.borderColor = 'rgba(59,130,246,0.3)';
+      btn.style.color = 'var(--accent)';
+    }, 1500);
+  }, 400);
 }
 
 function renderBestBets() {
@@ -1346,7 +1383,7 @@ function renderBestBets() {
     </div>`;
   };
 
-  // ── Game Parlays — top 5 picks per game (60+ score only) ──────────────
+  // ── Game Parlays — picks per game (50+ score) ──────────────
   let gameParlaysHtml = '';
   if(GAMES.length) {
     const gameParlaySections = [];
@@ -1356,7 +1393,7 @@ function renderBestBets() {
       const gameBets = [];
       for(const bet of parlayPool) {
         if(bet.p.game !== gameTag) continue;
-        if(bet.score < 70) continue;
+        if(bet.score < 50) continue;
         gameBets.push(bet);
       }
       if(gameBets.length < 2) continue;
@@ -1393,7 +1430,7 @@ function renderBestBets() {
 
   // ── Full Slate Parlay — same rules as game parlays but across all games ──
   let slateParlayHtml = '';
-  const slateLegs = parlayPool.filter(bet => bet.score >= 70);
+  const slateLegs = parlayPool.filter(bet => bet.score >= 60);
   if(slateLegs.length >= 2) {
     const slateAvg = Math.round(slateLegs.reduce((a,b)=>a+b.score,0)/slateLegs.length);
     const slateRows = slateLegs.map(bet => {
@@ -1426,7 +1463,7 @@ function renderBestBets() {
 
 // ── AEST Clock ────────────────────────────────────────
 function tickClock() {
-  const now = new Date().toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  const now = new Date().toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false});
   const el = document.getElementById('aest-clock');
   if(el) el.textContent = `🕐 ${now}`;
 }
@@ -1437,6 +1474,35 @@ setInterval(tickClock, 1000);
 const REFRESH_INTERVAL = 30 * 60 * 1000;
 let refreshTimer = null;
 let lastRefresh = null;
+
+function refreshLines() {
+  const badge = document.getElementById('refresh-badge');
+  if(!badge) return;
+  // Animate to spinning amber state
+  badge.innerHTML = '<span class="spinning">↻</span> WORKING';
+  badge.className = 'badge gw';
+  badge.style.pointerEvents = 'none';
+  // Clear lines and refetch
+  PROP_LINES = {};
+  Object.values(PLAYERS).forEach(p => {
+    if(p.lineSource !== 'Manual') {
+      p.lines = {pts:'',reb:'',ast:''};
+      p.lineSource = null;
+    }
+  });
+  fetchAllProps().then(() => {
+    lastRefresh = new Date();
+    badge.innerHTML = '✓ LINES UPDATED';
+    badge.className = 'badge gg';
+    badge.style.pointerEvents = 'auto';
+    setTimeout(() => {
+      updateRefreshBadge();
+      badge.className = 'badge gm';
+      badge.style.pointerEvents = 'auto';
+    }, 1500);
+  });
+  showToast('Refreshing lines...');
+}
 
 function scheduleRefresh() {
   if(refreshTimer) clearInterval(refreshTimer);
@@ -1637,7 +1703,7 @@ const FAQ_HTML = `
 
   <div>
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:#2dd4bf;margin-bottom:5px">🌐 FULL SLATE PARLAY</div>
-    <p style="margin:0 0 5px">Every qualifying leg from every game on the slate in one parlay — same strict rules as the Top Parlay and Game Parlays (70+ score, 70%+ hit rate, both signals agree, 2.5pt cushion). This is the most legs you can put together while still meeting all quality filters.</p>
+    <p style="margin:0 0 5px">Every qualifying leg from every game on the slate in one parlay — same strict rules as the Top Parlay and Game Parlays (50+ score, 70%+ hit rate, both signals agree, 2.5pt cushion). This is the most legs you can put together while still meeting all quality filters.</p>
     <p style="margin:0;color:var(--muted)">More legs = higher payout but lower overall hit probability. Use the Full Slate as a reference for which picks NEST is most confident in across the whole day.</p>
   </div>
 
@@ -1670,7 +1736,7 @@ const FAQ_HTML = `
 
   <div>
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📋 LAST 5 GAMES LOG</div>
-    <p style="margin:0">Tap the <b>📋 Last 5 Games</b> row on any player card to expand their recent scores. <span style="color:var(--over)">Green</span> = beat the line, <span style="color:var(--under)">Red</span> = missed, White = no line to compare.</p>
+    <p style="margin:0">Tap the <b>📋 Last 10 Games</b> row on any player card to expand their recent scores. <span style="color:var(--over)">Green</span> = beat the line, <span style="color:var(--under)">Red</span> = missed, White = no line to compare.</p>
   </div>
 
   <div>
