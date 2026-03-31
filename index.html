@@ -423,15 +423,15 @@ async function fetchAllProps() {
       } catch(e) { console.warn('Props error for', g.eventId, e); }
     }
 
-    // Apply lines to players
+    // Apply lines to players — always overwrite auto lines, preserve Manual overrides
     let matched = 0;
     for (const p of Object.values(PLAYERS)) {
       const pl = PROP_LINES[p.id];
       if (!pl) continue;
       let got = false;
-      if (pl.pts != null && p.lines.pts === '') { p.lines.pts = String(pl.pts); got=true; }
-      if (pl.reb != null && p.lines.reb === '') { p.lines.reb = String(pl.reb); got=true; }
-      if (pl.ast != null && p.lines.ast === '') { p.lines.ast = String(pl.ast); got=true; }
+      if (pl.pts != null && p.lineSource !== 'Manual') { p.lines.pts = String(pl.pts); got=true; }
+      if (pl.reb != null && p.lineSource !== 'Manual') { p.lines.reb = String(pl.reb); got=true; }
+      if (pl.ast != null && p.lineSource !== 'Manual') { p.lines.ast = String(pl.ast); got=true; }
       if (got) { p.lineSource = 'DraftKings'; matched++; }
     }
 
