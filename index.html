@@ -295,7 +295,7 @@ select option{background:#1a1d26}
 <div id="tracker-modal" onclick="if(event.target===this)closeTracker()">
   <div id="tracker-box">
     <div class="trk-hdr">
-      <span class="trk-hdr-title">📊 Lock Tracker <span id="trk-sync-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);margin-left:6px;vertical-align:middle;cursor:help" title="Sync status"></span></span>
+      <span class="trk-hdr-title">📊 Lock Tracker</span>
       <div style="display:flex;align-items:center;gap:8px">
 <button onclick="saveTodayLock()" style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;border-radius:5px;padding:3px 12px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer">💾 Save Lock</button>
         <button onclick="closeTracker()" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:0 4px">✕</button>
@@ -1250,84 +1250,25 @@ function scoreBetRelaxed(p, stat) {
 
 
 // ── Pick Tracker ─────────────────────────────────────
-const TRACK_KEY  = 'nest_pick_tracker';
-const GIST_KEY   = 'nest_gist_creds';
-const GIST_FILE  = 'nest-tracker.json';
+const TRACK_KEY = 'nest_pick_tracker';
 
-// ── PASTE YOUR CREDENTIALS HERE ─────────────────────
-// 1. Revoke your old token on GitHub first
-// 2. Generate a new token with 'gist' scope only
-// 3. Replace the two values below and save
-const HARDCODED_GIST_ID    = 'be6ca0b17e0ed75793cd3e280c399852';
-const HARDCODED_GIST_TOKEN = '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';
-// ────────────────────────────────────────────────────
-
-function getGist(){
-  if(HARDCODED_GIST_ID !== 'YOUR_GIST_ID_HERE' && HARDCODED_GIST_TOKEN !== 'YOUR_GITHUB_TOKEN_HERE'){
-    return {gistId: HARDCODED_GIST_ID, token: HARDCODED_GIST_TOKEN};
-  }
-  try{ return JSON.parse(localStorage.getItem(GIST_KEY)||'null'); }catch(e){ return null; }
-}
-function saveGistCreds(gistId,token){ localStorage.setItem(GIST_KEY,JSON.stringify({gistId:gistId.trim(),token:token.trim()})); }
-
-async function loadTracker(){
-  const g=getGist();
-  if(g&&g.gistId&&g.token){
-    try{
-      const r=await fetch('https://api.github.com/gists/'+g.gistId,{
-        headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json'}
-      });
-      if(r.ok){
-        const d=await r.json();
-        const content=d.files?.[GIST_FILE]?.content;
-        if(content){ const parsed=JSON.parse(content); return Array.isArray(parsed)?parsed:[]; }
-      }
-    }catch(e){}
-  }
+function loadTracker(){
   try{ return JSON.parse(localStorage.getItem(TRACK_KEY)||'[]'); }catch(e){ return []; }
 }
 
-async function saveTracker(data){
-  try{ localStorage.setItem(TRACK_KEY,JSON.stringify(data)); }catch(e){}
-  const g=getGist();
-  if(g&&g.gistId&&g.token){
-    try{
-      const r = await fetch('https://api.github.com/gists/'+g.gistId,{
-        method:'PATCH',
-        headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
-        body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data)}}})
-      });
-      // Flash dot green on success, red on fail
-      const dot = document.getElementById('trk-sync-dot');
-      if(dot){
-        dot.style.background = r.ok ? '#22c55e' : '#ef4444';
-        dot.title = r.ok ? '✓ Synced to GitHub' : '✗ Sync failed ('+r.status+')';
-      }
-    }catch(e){ console.warn('Gist save failed:',e); }
-  }
+function saveTracker(data){
+  try{ localStorage.setItem(TRACK_KEY, JSON.stringify(data)); }catch(e){}
 }
+
+
 
 function openTracker(){
   document.getElementById('tracker-modal').classList.add('open');
-  updateSyncDot();
   renderTracker();
-}
-
-function updateSyncDot(){
-  const g = getGist();
-  const dot = document.getElementById('trk-sync-dot');
-  if(!dot) return;
-  if(g && g.gistId && g.token){
-    dot.style.background = 'var(--over)';
-    dot.title = '✓ GitHub Gist sync active';
-  } else {
-    dot.style.background = 'var(--muted)';
-    dot.title = 'Local only — no sync configured';
-  }
 }
 function closeTracker(){ document.getElementById('tracker-modal').classList.remove('open'); }
 
-async function saveTodayLock(){
+function saveTodayLock(){
   const candidates=[];
   for(const p of Object.values(PLAYERS).filter(p=>p.hlLoaded)){
     for(const stat of ['pts','reb','ast']){
@@ -1354,35 +1295,31 @@ async function saveTodayLock(){
     result: null
   };
 
-  const data=await loadTracker();
+  const data=loadTracker();
   data.unshift(entry);
-  await saveTracker(data);
+  saveTracker(data);
   showToast('✓ Lock saved: '+lock.p.name+' '+lock.side.toUpperCase()+' '+lock.line);
   renderTrackerWithData(data); // render immediately from local data, don't re-fetch
 }
 
-async function setResult(id, result){
-  const data=await loadTracker();
+function setResult(id, result){
+  const data=loadTracker();
   const entry=data.find(e=>e.id===id);
   if(!entry) return;
   entry.result = entry.result===result ? null : result;
-  await saveTracker(data);
+  saveTracker(data);
   renderTrackerWithData(data); // render from local data
 }
 
-async function clearAllHistory(){
+function clearAllHistory(){
   if(!confirm('Clear all pick history? This cannot be undone.')) return;
   localStorage.removeItem(TRACK_KEY);
-  const g=getGist();
-  if(g&&g.gistId&&g.token){
-    try{ await fetch('https://api.github.com/gists/'+g.gistId,{method:'PATCH',headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify({files:{[GIST_FILE]:{content:'[]'}}})}); }catch(e){}
-  }
   renderTracker();
 }
 
 
-async function renderTracker(){
-  const data = await loadTracker();
+function renderTracker(){
+  const data = loadTracker();
   renderTrackerWithData(data);
 }
 
