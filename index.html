@@ -1275,7 +1275,7 @@ async function loadTracker(){
   if(g&&g.gistId&&g.token){
     try{
       const r=await fetch('https://api.github.com/gists/'+g.gistId,{
-        headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}
+        headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json'}
       });
       if(r.ok){
         const d=await r.json();
@@ -1294,7 +1294,7 @@ async function saveTracker(data){
     try{
       const r = await fetch('https://api.github.com/gists/'+g.gistId,{
         method:'PATCH',
-        headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+        headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
         body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data)}}})
       });
       // Flash dot green on success, red on fail
@@ -1375,7 +1375,7 @@ async function clearAllHistory(){
   localStorage.removeItem(TRACK_KEY);
   const g=getGist();
   if(g&&g.gistId&&g.token){
-    try{ await fetch('https://api.github.com/gists/'+g.gistId,{method:'PATCH',headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify({files:{[GIST_FILE]:{content:'[]'}}})}); }catch(e){}
+    try{ await fetch('https://api.github.com/gists/'+g.gistId,{method:'PATCH',headers:{'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify({files:{[GIST_FILE]:{content:'[]'}}})}); }catch(e){}
   }
   renderTracker();
 }
