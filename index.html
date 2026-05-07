@@ -14,7 +14,7 @@ header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 16p
 .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0}
 .logo-sub{font-size:9px;color:var(--muted);font-weight:400;font-family:'Barlow',sans-serif;letter-spacing:.3px;margin-left:6px;white-space:nowrap}
 .hdr-right{display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
-.badge{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:700;letter-spacing:.5px;border:1px solid;white-space:nowrap}
+.badge{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:700;letter-spacing:.5px;border:1px solid;white-space:nowrap;font-family:'Barlow Condensed',sans-serif}
 .gg{background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3)}
 .gw{background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.3)}
 .gb{background:rgba(59,130,246,0.15);color:var(--accent);border-color:rgba(59,130,246,0.3)}
@@ -61,6 +61,33 @@ select option{background:#1a1d26}
 .sval{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#fff;line-height:1}
 .hl-title{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:8px}
+.floor-section{margin-top:10px;padding:8px 10px;background:var(--bg3);border-radius:7px;border:1px solid var(--border)}
+.floor-title{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:6px;display:flex;align-items:baseline;gap:6px}
+.floor-sub{font-size:8px;color:var(--muted);font-weight:400;letter-spacing:.3px}
+.floor-row{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+.floor-row:last-child{margin-bottom:0}
+.floor-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;width:28px;flex-shrink:0}
+.floor-chip{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 2px;border-radius:5px;border:1px solid;cursor:help;transition:all .2s;min-width:0}
+.floor-chip:hover{transform:translateY(-1px)}
+.floor-tier{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3px;line-height:1}
+.floor-streak{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;line-height:1;margin-top:2px;letter-spacing:.2px}
+.floor-lock{background:rgba(34,197,94,0.18);border-color:rgba(34,197,94,0.45);color:#22c55e}
+.floor-strong{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.25);color:#86efac}
+.floor-ok{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.2);color:#f59e0b}
+.floor-weak{background:rgba(122,128,153,0.05);border-color:var(--border);color:var(--muted);opacity:0.6}
+.floor-lock-row{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;margin-bottom:5px;transition:all .2s}
+.floor-lock-row:hover{border-color:rgba(34,197,94,0.4);transform:translateX(2px)}
+.floor-lock-rank{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;background:var(--bg3);color:var(--muted);flex-shrink:0}
+.floor-lock-rank.r1{background:rgba(245,158,11,0.2);color:#f59e0b;border:1px solid rgba(245,158,11,0.4)}
+.floor-lock-rank.r2{background:rgba(122,128,153,0.2);color:#cbd5e1;border:1px solid rgba(122,128,153,0.4)}
+.floor-lock-rank.r3{background:rgba(180,83,9,0.2);color:#d97706;border:1px solid rgba(180,83,9,0.4)}
+.floor-lock-info{flex:1;min-width:0}
+.floor-lock-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--text);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.floor-lock-meta{font-size:9px;color:var(--muted);font-weight:400;letter-spacing:.3px;margin-top:1px}
+.floor-lock-meta b{color:var(--accent);font-weight:700}
+.floor-lock-stats{text-align:right;flex-shrink:0}
+.floor-lock-tier{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--over);letter-spacing:.5px;line-height:1}
+.floor-lock-streak{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:var(--over);letter-spacing:.5px;margin-top:2px;opacity:0.85}
 .hl-cell{background:var(--bg3);border-radius:4px;padding:5px 4px;text-align:center}
 .hl-stat{font-size:9px;color:var(--muted);font-weight:700;display:block;margin-bottom:2px}
 .hl-hi{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--over);display:block;line-height:1}
@@ -250,14 +277,15 @@ select option{background:#1a1d26}
 .gamelog-toggle:hover{color:var(--text)}
 .gamelog-body{display:none;padding:0 10px 8px}
 .gamelog-body.open{display:block}
-.gamelog-row{display:grid;grid-template-columns:28px 1fr 1fr 1fr;gap:4px;align-items:center;padding:3px 0;border-bottom:1px solid var(--border)}
+.gamelog-row{display:grid;grid-template-columns:44px 32px 1fr 1fr 1fr;gap:4px;align-items:center;padding:3px 0;border-bottom:1px solid var(--border)}
 .gamelog-row:last-child{border-bottom:none}
-.gamelog-num{font-size:9px;color:var(--muted);font-weight:700;font-family:'Barlow Condensed',sans-serif}
+.gamelog-date{font-size:9px;color:var(--muted);font-weight:700;font-family:'Barlow Condensed',sans-serif;white-space:nowrap}
+.gamelog-opp{font-size:9px;color:var(--accent);font-weight:700;font-family:'Barlow Condensed',sans-serif;text-align:center}
 .gamelog-val{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-align:center}
 .gamelog-val.hit{color:var(--over)}.gamelog-val.miss{color:var(--under)}.gamelog-val.neu{color:var(--text)}
-.gamelog-hdr{display:grid;grid-template-columns:28px 1fr 1fr 1fr;gap:4px;padding:4px 0 3px;border-bottom:1px solid var(--border2);margin-bottom:2px}
+.gamelog-hdr{display:grid;grid-template-columns:44px 32px 1fr 1fr 1fr;gap:4px;padding:4px 0 3px;border-bottom:1px solid var(--border2);margin-bottom:2px}
 .gamelog-hdr span{font-size:8px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);text-align:center}
-.gamelog-hdr span:first-child{text-align:left}
+.gamelog-hdr span:first-child{text-align:left}.gamelog-hdr span:nth-child(2){text-align:center}
 
 </style>
 </head>
@@ -265,13 +293,13 @@ select option{background:#1a1d26}
 <header>
   <div class="logo"><span class="logo-dot"></span><span style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;font-family:'Barlow',sans-serif;margin-right:2px">mot.inc</span>NEST<span class="logo-sub">Numerical Evaluation of Statistical Trends</span></div>
   <div class="hdr-right">
-    <span class="badge gb" id="aest-clock">–</span>
-    <button class="badge gw" id="scheme-btn" onclick="toggleSchemePicker()" style="cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;border:none">🎨 THEME</button>
-    <button class="badge gw" onclick="toggleFaq()" style="cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;border:none">❓ FAQ</button>
+    <span class="badge gm" id="aest-clock">–</span>
+    <span class="badge gm" id="scheme-btn" onclick="toggleSchemePicker()" style="cursor:pointer">🎨 THEME</span>
+    <span class="badge gm" onclick="toggleFaq()" style="cursor:pointer">❓ FAQ</span>
     <span class="badge gm" id="refresh-badge" style="cursor:pointer;transition:all .3s" onclick="refreshLines()">↻ LIVE</span>
-    <span class="badge gm" id="lines-badge">LINES...</span>
+    <span class="badge gm" id="lines-badge" onclick="fetchAllProps()" style="cursor:pointer" title="Click to retry fetching lines">LINES...</span>
     <span class="badge gg" id="status-badge">LOADING...</span>
-    <span class="badge gw" id="date-badge">–</span>
+    <span class="badge gm" id="date-badge">–</span>
   </div>
 </header>
 
@@ -287,7 +315,7 @@ select option{background:#1a1d26}
     <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--text)">❓ HOW NEST WORKS</span>
     <button onclick="toggleFaq()" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 4px">✕</button>
   </div>
-  <div style="overflow-y:auto;flex:1;padding:12px 14px;font-size:11px;line-height:1.7;color:var(--text)" id="faq-body"></div>
+  <div style="overflow-y:auto;flex:1;padding:12px 14px;font-size:11px;line-height:1.7;color:var(--text);" id="faq-body"></div>
 </div>
 <div id="faq-overlay" style="display:none;position:fixed;inset:0;z-index:499" onclick="toggleFaq()"></div>
 
@@ -342,6 +370,7 @@ select option{background:#1a1d26}
     </select>
     <select id="ffilter" onchange="setFFromSelect(this.value)">
       <option value="all">Filter: All Players</option>
+      <option value="locks">Filter: 🔒 Has Floor Lock (10+ games)</option>
       <option value="parlay">Filter: 🎯 Has Parlay (50+)</option>
       <option value="lined">Filter: Has Lines</option>
       <option value="over">Filter: Overs</option>
@@ -381,7 +410,7 @@ select option{background:#1a1d26}
 <script>
 const ESPN   = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba';
 const CORE   = 'https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba';
-const SEASON = 2026, MIN_MINS = 10, LAST_N = 20;
+const SEASON = 2026, MIN_MINS = 1, LAST_N = 20; // 1 = any game played (no minutes restriction)
 const ACTIVE_TYPES = new Set(['active','day-to-day']);
 
 // ESPN prop type name → our stat key
@@ -397,6 +426,7 @@ const PROP_TYPE_MAP = {
 let GAMES=[], PLAYERS={}, filt='all', activeGame='all';
 let dayOffset = 0; // 0=today, 1=tomorrow, -1=yesterday
 let PROP_LINES = {};
+let SUMMARY_CACHE = {}; // event_id → {date, teams} — shared across all fetchHL calls
 
 async function get(url) {
   const r = await fetch(url.replace('http://','https://'));
@@ -419,19 +449,36 @@ function prog(pct,text,detail) {
 
 // ── Extract athlete ID from $ref URL ──────────────────
 function athleteIdFromRef(ref) {
+  if(!ref) return null;
+  // Handle both formats:
+  // /seasons/2026/athletes/12345  (season-scoped)
+  // /athletes/12345               (global)
   const m = (ref||'').match(/athletes\/(\d+)/);
   return m ? m[1] : null;
+}
+
+// Build a name→id lookup from PLAYERS for fallback matching
+function buildNameLookup() {
+  const lookup = {};
+  for(const p of Object.values(PLAYERS)){
+    const key = p.name.toLowerCase().replace(/[^a-z]/g,'');
+    lookup[key] = p.id;
+  }
+  return lookup;
 }
 
 // ── Fetch all prop pages for one event ────────────────
 async function fetchEventProps(eventId) {
   const base = `${CORE}/events/${eventId}/competitions/${eventId}/odds/100/propBets`;
-  // First page tells us pageCount
-  const first = await get(`${base}?lang=en&region=us&limit=100`);
+  let first;
+  try {
+    first = await get(`${base}?lang=en&region=us&limit=100`);
+  } catch(e) {
+    return; // 404 = props not posted yet
+  }
   const pageCount = first.pageCount || 1;
   let items = first.items || [];
 
-  // Fetch remaining pages in parallel
   if (pageCount > 1) {
     const pages = Array.from({length: pageCount-1}, (_,i) => i+2);
     const results = await Promise.all(
@@ -440,25 +487,54 @@ async function fetchEventProps(eventId) {
     results.forEach(r => { items = items.concat(r.items||[]); });
   }
 
-  // Parse: for each item extract athleteId + type + line
+  // Build a name→id map from loaded players for fallback matching
+  const playersByName = {};
+  const playersByShortId = {};
+  for(const p of Object.values(PLAYERS)){
+    playersByName[p.name.toLowerCase()] = p.id;
+    // Some ESPN endpoints use shorter IDs — store both
+    playersByShortId[p.id] = p.id;
+  }
+
+  // Batch-resolve athlete refs to get names (needed because prop IDs may not match roster IDs)
+  // Only resolve unique athlete refs we haven't seen before
+  const athRefs = [...new Set(items.map(it=>it.athlete?.$ref).filter(Boolean))];
+  const athIdToPlayerId = {};
+
+  await Promise.all(athRefs.map(async ref => {
+    const shortId = athleteIdFromRef(ref);
+    if(!shortId) return;
+    // Direct match first (fast path)
+    if(PLAYERS[shortId]){ athIdToPlayerId[shortId] = shortId; return; }
+    // Try fetching the athlete to get their name for fallback matching
+    try {
+      const cleanRef = ref.replace('http://','https://').split('?')[0];
+      const ath = await fetch(cleanRef + '?lang=en&region=us').then(r=>r.ok?r.json():null);
+      if(!ath) return;
+      const name = (ath.displayName||ath.fullName||'').toLowerCase();
+      if(playersByName[name]){
+        athIdToPlayerId[shortId] = playersByName[name];
+      }
+    } catch(e) {}
+  }));
+
   for (const item of items) {
-    const athId = athleteIdFromRef(item.athlete?.$ref);
-    if (!athId) continue;
+    const shortId = athleteIdFromRef(item.athlete?.$ref);
+    if (!shortId) continue;
+    // Try direct match, then resolved match
+    const playerId = PLAYERS[shortId] ? shortId : athIdToPlayerId[shortId];
+    if (!playerId) continue;
 
     const typeName = (item.type?.name||'').toLowerCase();
     const stat = PROP_TYPE_MAP[typeName];
     if (!stat) continue;
 
-    // Use current target value as the line
     const line = item.current?.target?.value;
     if (line == null) continue;
 
-    // Only store Over line (there are Over+Under entries, same value)
-    // The american odds tell us which side — just store the value once
-    if (!PROP_LINES[athId]) PROP_LINES[athId] = {};
-    // Keep first occurrence (Over, which comes first)
-    if (PROP_LINES[athId][stat] == null) {
-      PROP_LINES[athId][stat] = parseFloat(line);
+    if (!PROP_LINES[playerId]) PROP_LINES[playerId] = {};
+    if (PROP_LINES[playerId][stat] == null) {
+      PROP_LINES[playerId][stat] = parseFloat(line);
     }
   }
 }
@@ -468,16 +544,14 @@ async function fetchAllProps() {
   const lb = document.getElementById('lines-badge');
   lb.textContent='LINES...'; lb.className='badge gw';
   try {
-    let fetched = 0;
-    for (const g of GAMES) {
-      if (!g.eventId) continue;
-      try {
-        await fetchEventProps(g.eventId);
-        fetched++;
-      } catch(e) { console.warn('Props error for', g.eventId, e); }
-    }
+    const gameIds = GAMES.filter(g=>g.eventId).map(g=>g.eventId);
+    console.log('[NEST] fetchAllProps: games=', gameIds.length, 'ids=', gameIds);
 
-    // Apply lines to players — always overwrite auto lines, preserve Manual overrides
+    await Promise.all(gameIds.map(id=>fetchEventProps(id)));
+
+    console.log('[NEST] PROP_LINES keys:', Object.keys(PROP_LINES).length);
+
+    // Apply lines to players
     let matched = 0;
     for (const p of Object.values(PLAYERS)) {
       const pl = PROP_LINES[p.id];
@@ -489,18 +563,25 @@ async function fetchAllProps() {
       if (got) { p.lineSource = 'DraftKings'; matched++; }
     }
 
-    // Recalculate hit rates vs actual lines now that we have them
-    recalcHitRates();
+    console.log('[NEST] Lines matched to players:', matched, '/', Object.keys(PLAYERS).length);
 
+    recalcHitRates();
     render();
     renderBestBets();
     lb.textContent = matched ? `${matched} LINES` : 'NO LINES';
     lb.className   = matched ? 'badge gg' : 'badge gm';
-    if (!matched) showToast('No prop lines available yet (may not be posted)');
+    if (!matched) {
+      // Show how many prop entries we got vs players we have
+      const propCount = Object.keys(PROP_LINES).length;
+      const playerCount = Object.keys(PLAYERS).length;
+      console.warn(`[NEST] NO LINES: ${propCount} props fetched, ${playerCount} players loaded. Date offset: ${dayOffset}`);
+      showToast(`No lines yet (${propCount} props fetched, ${playerCount} players)`);
+    }
   } catch(e) {
-    document.getElementById('lines-badge').textContent='LINES ERR';
-    document.getElementById('lines-badge').className='badge gm';
-    console.error('Props fetch error:', e);
+    console.error('[NEST] Props fetch error:', e);
+    lb.textContent='NO LINES';
+    lb.className='badge gm';
+    showToast('Lines fetch failed — check console');
   }
 }
 
@@ -535,18 +616,12 @@ async function fetchGames() {
     const c=ev.competitions[0];
     const h=c.competitors.find(x=>x.homeAway==='home');
     const a=c.competitors.find(x=>x.homeAway==='away');
-    // Game total from odds if available
-    let gameTotal = null;
-    for(const odd of (c.odds||[])) {
-      const ou = odd.overUnder || odd.total;
-      if(ou) { gameTotal = parseFloat(ou); break; }
-    }
     return {
       home:h.team.abbreviation, away:a.team.abbreviation,
       homeId:h.team.id, awayId:a.team.id,
       time:fmtTime(ev.date), eventId:ev.id, date:ev.date,
       state:(c.status?.type?.state||'').toLowerCase(),
-      gameTotal
+      gameTotal:null, homeSpread:null
     };
   });
 
@@ -568,8 +643,33 @@ async function fetchGames() {
   return GAMES.length;
 }
 
+// ── Fetch game odds (spread + O/U) for all games ──────
+async function fetchOdds() {
+  try {
+    await Promise.all(GAMES.map(async g => {
+      if(!g.eventId) return;
+      try {
+        const d = await get(`${CORE}/events/${g.eventId}/competitions/${g.eventId}/odds?lang=en&region=us`);
+        const items = Array.isArray(d.items) ? d.items : [];
+        const odd = items[0]; // take first provider (DraftKings)
+        if(!odd) return;
+        if(odd.overUnder != null) g.gameTotal = parseFloat(odd.overUnder);
+        if(odd.spread != null)    g.homeSpread = parseFloat(odd.spread);
+        // Push updated values to all players in this game
+        const tag = `${g.away}@${g.home}`;
+        for(const p of Object.values(PLAYERS)){
+          if(p.game !== tag) continue;
+          p.gameTotal   = g.gameTotal;
+          p.homeSpread  = g.homeSpread;
+          p.blowoutRisk = g.homeSpread !== null && Math.abs(g.homeSpread) >= 12;
+        }
+      } catch(e) { /* odds not available yet */ }
+    }));
+  } catch(e) { console.warn('fetchOdds error:', e); }
+}
+
 // ── Roster — active only ──────────────────────────────
-async function fetchRoster(teamId, teamAbbr, gameTag, isHome, gameTotal) {
+async function fetchRoster(teamId, teamAbbr, gameTag, isHome, gameTotal, homeSpread) {
   const data = await get(`${ESPN}/teams/${teamId}/roster`);
   for (const ath of (data.athletes||[])) {
     if (!ath.id) continue;
@@ -585,12 +685,22 @@ async function fetchRoster(teamId, teamAbbr, gameTag, isHome, gameTotal) {
       lines:{pts:'',reb:'',ast:''}, lineSource:null, hlLoaded:false,
       l10:{pts:null,reb:null,ast:null},
       hitRate:{pts:null,reb:null,ast:null},
+      homeHitRate:{pts:null,reb:null,ast:null},
+      awayHitRate:{pts:null,reb:null,ast:null},
+      oppHitRate:{pts:null,reb:null,ast:null},
       streak:{pts:0,reb:0,ast:0},
       minsTrend:null,
       isHome:isHome,
       recentGames:[],
+      allGames:[],
       gameTotal:gameTotal,
+      homeSpread:null,
+      blowoutRisk:false,
       oppDefRank:null,
+      restDays:null,
+      fgaTrend:null,
+      lastGameDate:null,
+      todayOpp:null,
     };
   }
 }
@@ -694,47 +804,235 @@ async function fetchDefRanks() {
   } catch(e) { console.warn('DefRanks error:', e); }
 }
 
+// ── Fetch recent games from boxscores (catches eventlog lag) ─
+// Looks back 30 days of scoreboards to find games the eventlog hasn't indexed yet
+const RECENT_BOXSCORE_CACHE = {}; // date → event IDs
+
+async function fetchRecentBoxscoresForPlayer(athId, athName, knownEvIds) {
+  const results = [];
+  try {
+    // Build list of recent dates (last 30 days)
+    const dates = [];
+    for(let i=1; i<=30; i++){
+      const d = new Date(); d.setDate(d.getDate()-i);
+      dates.push(d.toISOString().slice(0,10).replace(/-/g,''));
+    }
+
+    // Get event IDs from scoreboards (cached)
+    const eventIds = [];
+    await Promise.all(dates.map(async dateStr => {
+      if(RECENT_BOXSCORE_CACHE[dateStr]){ eventIds.push(...RECENT_BOXSCORE_CACHE[dateStr]); return; }
+      try{
+        const sb = await fetch(`${ESPN}/scoreboard?dates=${dateStr}&limit=20`).then(r=>r.ok?r.json():null);
+        const ids = (sb?.events||[]).filter(e=>e.competitions?.[0]?.status?.type?.state==='post').map(e=>e.id);
+        RECENT_BOXSCORE_CACHE[dateStr] = ids;
+        eventIds.push(...ids);
+      }catch(e){}
+    }));
+
+    // Only check games we don't already have
+    const newIds = [...new Set(eventIds)].filter(id=>!knownEvIds.has(id));
+    if(!newIds.length) return results;
+
+    // Check boxscores for this player in parallel (batch of 10)
+    const batches = [];
+    for(let i=0; i<newIds.length; i+=10) batches.push(newIds.slice(i,i+10));
+
+    for(const batch of batches){
+      const batchResults = await Promise.all(batch.map(async evId => {
+        try{
+          const summ = await fetch(`${ESPN}/summary?event=${evId}`).then(r=>r.ok?r.json():null);
+          if(!summ) return null;
+          const date = summ.header?.competitions?.[0]?.date?.slice(0,10);
+          const teams = (summ.header?.competitions?.[0]?.competitors||[]).map(c=>c.team?.abbreviation);
+
+          // Search boxscore for this player
+          const box = summ.boxscore?.players||[];
+          for(const team of box){
+            for(const cat of (team.statistics||[])){
+              const labels = cat.labels||[];
+              const found = (cat.athletes||[]).find(a=>a.athlete?.id===athId || (a.athlete?.displayName||'').toLowerCase()===athName.toLowerCase());
+              if(!found) continue;
+
+              const stats = found.stats||[];
+              const idx = (k) => labels.indexOf(k);
+              const val = (k) => { const i=idx(k); return i>=0&&stats[i]!=='-'?parseFloat(stats[i]):null; };
+
+              const mins = val('MIN');
+              if(!mins||mins<=0) return null; // only exclude true DNPs
+
+              const pts = val('PTS');
+              const reb = val('REB');
+              const ast = val('AST');
+              // Parse FGA from 'FG' label (format: 'made-attempted')
+              const fgStr = stats[idx('FG')]||'';
+              const fgMatch = fgStr.match(/\d+-(\d+)/);
+              const fga = fgMatch ? parseInt(fgMatch[1]) : null;
+              // Determine player's team from which team block they're in
+              const playerTeamAbbr = team.team?.abbreviation || null;
+              const opp = teams.filter(t=>t!==playerTeamAbbr).join('/') || null;
+              const wasHome = (summ.header?.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation===playerTeamAbbr&&c.homeAway==='home');
+
+              return {pts, reb, ast, mins, fga: fga||null, opp, wasHome, gameDate: date};
+            }
+          }
+          return null;
+        }catch(e){ return null; }
+      }));
+      results.push(...batchResults.filter(Boolean));
+    }
+  } catch(e) {}
+  return results.sort((a,b)=>(a.gameDate||'0').localeCompare(b.gameDate||'0'));
+}
+
 async function fetchHL(id) {
   try {
     const p=PLAYERS[id]; if(!p) return;
     const ev=await get(`${CORE}/athletes/${id}/eventlog?season=${SEASON}&seasontype=2&limit=100`);
-    const items=(ev.events?.items||[]).filter(it=>it.played&&it.statistics?.$ref).slice(-LAST_N);
-    if(!items.length) return;
+    let allItems = (ev.events?.items||[]).filter(it=>it.played&&it.statistics?.$ref);
+    try {
+      const ev3 = await get(`${CORE}/athletes/${id}/eventlog?season=${SEASON}&seasontype=3&limit=100`);
+      const items3 = (ev3.events?.items||[]).filter(it=>it.played&&it.statistics?.$ref);
+      const seenEvIds = new Set(allItems.map(it=>(it.statistics.$ref||'').match(/events\/(\d+)/)?.[1]).filter(Boolean));
+      for(const it of items3){
+        const evId=(it.statistics.$ref||'').match(/events\/(\d+)/)?.[1];
+        if(evId&&!seenEvIds.has(evId)){ allItems.push(it); seenEvIds.add(evId); }
+      }
+    } catch(e) {}
+
+    // Sort by event ID ascending (sequential = chronological for ESPN)
+    allItems.sort((a,b)=>{
+      const aId=parseInt((a.statistics.$ref||'').match(/events\/(\d+)/)?.[1]||0);
+      const bId=parseInt((b.statistics.$ref||'').match(/events\/(\d+)/)?.[1]||0);
+      return aId-bId;
+    });
+
+    // ── Supplement with recent boxscores ─────────────────
+    // ESPN eventlog lags during playoffs — fetch recent scoreboards directly
+    // to catch games not yet in the eventlog
+    const knownEvIds = new Set(allItems.map(it=>(it.statistics.$ref||'').match(/events\/(\d+)/)?.[1]).filter(Boolean));
+    const recentBoxGames = await fetchRecentBoxscoresForPlayer(p.id, p.name, knownEvIds);
+
+    // Fetch 2x buffer to ensure enough qualifying games after MIN_MINS filter
+    const items = allItems.slice(-(LAST_N * 2));
+    if(!items.length && !recentBoxGames.length) return;
     let hiP=null,loP=null,hiR=null,loR=null,hiA=null,loA=null;
-    // Collect per-game values so we can compute L10 avg
-    const games = []; // {pts,reb,ast} for each valid game played
-    // Fetch all game stats in one parallel burst
-    const results = await Promise.all(items.map(async it=>{
-      try{
-        const d=await get(it.statistics.$ref);
-        let mins=0,pts=null,reb=null,ast=null;
-        for(const cat of(d.splits?.categories||[])){
-          for(const s of(cat.stats||[])){
-            const n=(s.name||'').toLowerCase(),v=parseFloat(s.value);
-            if(isNaN(v)) continue;
-            if(n==='minutes') mins=v;
-            if(n==='points') pts=v;
-            if(n==='rebounds'||n==='totalrebounds') reb=v;
-            if(n==='assists') ast=v;
+    const games = [];
+
+    // Extract event IDs from stats refs to get opponent/date info (no extra sequential calls)
+    const eventIds = items.map(it=>{
+      const m = (it.statistics.$ref||'').match(/events\/(\d+)/);
+      return m ? m[1] : null;
+    });
+
+    // Fetch game stats AND game summaries in parallel
+    const [results, summaries] = await Promise.all([
+      Promise.all(items.map(async it=>{
+        try{
+          const d=await get(it.statistics.$ref);
+          let mins=0,pts=null,reb=null,ast=null,fga=null;
+          for(const cat of(d.splits?.categories||[])){
+            for(const s of(cat.stats||[])){
+              const n=(s.name||'').toLowerCase(),v=parseFloat(s.value);
+              if(isNaN(v)) continue;
+              if(n==='minutes') mins=v;
+              if(n==='points') pts=v;
+              if(n==='rebounds'||n==='totalrebounds') reb=v;
+              if(n==='assists') ast=v;
+              if(n==='fieldgoalsattempted') fga=v;
+            }
           }
-        }
-        if(mins<MIN_MINS) return null;
-        return {pts,reb,ast,mins};
-      }catch(e){ return null; }
-    }));
-    for(const g of results){
+          if(mins<=0) return null; // only exclude true DNPs (0 minutes)
+          return {pts,reb,ast,mins,fga};
+        }catch(e){ return null; }
+      })),
+      Promise.all(eventIds.map(async eid=>{
+        if(!eid) return null;
+        // Use cache — each game only fetched once across all players
+        if(SUMMARY_CACHE[eid]) return SUMMARY_CACHE[eid];
+        try{
+          const ESPN_SB = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba';
+          const d = await fetch(`${ESPN_SB}/summary?event=${eid}`).then(r=>r.ok?r.json():null);
+          if(!d) return null;
+          const comp = d.header?.competitions?.[0];
+          const date = comp?.date||null;
+          const teams = (comp?.competitors||[]).map(c=>({abbr:c.team?.abbreviation,homeAway:c.homeAway}));
+          const result = {date, teams};
+          SUMMARY_CACHE[eid] = result; // cache for other players
+          return result;
+        }catch(e){ return null; }
+      }))
+    ]);
+
+    // Merge results — pair each game stat with its summary (opponent, date, isHome)
+    const rawGames = [];
+    for(let i=0;i<results.length;i++){
+      const g = results[i];
       if(!g) continue;
+      const summ = summaries[i];
+      let opp=null, wasHome=null, gameDate=null;
+      if(summ){
+        gameDate = summ.date ? summ.date.slice(0,10) : null;
+        for(const t of (summ.teams||[])){
+          if(!t.abbr) continue;
+          if(t.abbr === p.team){ wasHome = t.homeAway==='home'; }
+          else { opp = t.abbr; }
+        }
+      }
+      rawGames.push({...g, opp, wasHome, gameDate});
+    }
+
+    // Sort by date (games with no date go to start, won't affect recent games)
+    rawGames.sort((a,b)=>(a.gameDate||'0').localeCompare(b.gameDate||'0'));
+
+    // Deduplicate same-date entries — keep the one with most minutes played
+    // (ESPN sometimes has duplicate entries for same game under different season types)
+    const dedupedGames = [];
+    const seenDates = new Map(); // date → index in dedupedGames
+    for(const g of rawGames){
+      if(g.gameDate && seenDates.has(g.gameDate)){
+        const existingIdx = seenDates.get(g.gameDate);
+        if((g.mins||0) > (dedupedGames[existingIdx].mins||0)){
+          dedupedGames[existingIdx] = g; // replace with higher-minutes version
+        }
+        // else skip this duplicate
+      } else {
+        if(g.gameDate) seenDates.set(g.gameDate, dedupedGames.length);
+        dedupedGames.push(g);
+      }
+    }
+
+    // Now push into games array (MIN_MINS already applied in stats fetch)
+    for(const g of dedupedGames){
       games.push(g);
+    }
+
+    // Merge in recent boxscore games (playoff games missed by eventlog)
+    for(const g of recentBoxGames){
+      // Only add if not already present (dedup by date+opp)
+      const key = (g.gameDate||'') + (g.opp||'');
+      const already = games.some(x=>(x.gameDate||'')+(x.opp||'')===key);
+      if(!already) games.push(g);
+    }
+
+    // Final sort by date
+    games.sort((a,b)=>(a.gameDate||'0').localeCompare(b.gameDate||'0'));
+
+    // Trim to last LAST_N qualifying games (all minutes-filtered)
+    const qualGames = games.slice(-LAST_N);
+
+    // Hi/Lo from last LAST_N qualifying games only
+    for(const g of qualGames){
       const {pts,reb,ast}=g;
       if(pts!==null){hiP=hiP===null?pts:Math.max(hiP,pts);loP=loP===null?pts:Math.min(loP,pts);}
       if(reb!==null){hiR=hiR===null?reb:Math.max(hiR,reb);loR=loR===null?reb:Math.min(loR,reb);}
       if(ast!==null){hiA=hiA===null?ast:Math.max(hiA,ast);loA=loA===null?ast:Math.min(loA,ast);}
-    }
-    if(hiP!==null){p.hi.pts=Math.round(hiP);p.lo.pts=Math.round(loP);}
+    }    if(hiP!==null){p.hi.pts=Math.round(hiP);p.lo.pts=Math.round(loP);}
     if(hiR!==null){p.hi.reb=Math.round(hiR);p.lo.reb=Math.round(loR);}
     if(hiA!==null){p.hi.ast=Math.round(hiA);p.lo.ast=Math.round(loA);}
-    // L10 average — last 10 valid games
-    const l10games = games.slice(-10);
+
+    // L10 average — last 10 qualifying games
+    const l10games = qualGames.slice(-10);
     if(l10games.length){
       const avg = (arr,key) => { const vs=arr.map(g=>g[key]).filter(v=>v!==null); return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null; };
       p.l10.pts = avg(l10games,'pts');
@@ -742,28 +1040,69 @@ async function fetchHL(id) {
       p.l10.ast = avg(l10games,'ast');
     }
 
-    // Store last 10 game scores for the expandable log
-    p.recentGames = games.slice(-10).reverse(); // most recent first
+    // Store game logs — qualGames already filtered by MIN_MINS
+    p.recentGames = qualGames.slice(-10).reverse(); // most recent 10 for display
+    p.allGames = qualGames;                          // all LAST_N qualifying games
 
-    // Hit rate — % of last 10 games over the actual line (falls back to season avg)
-    // Applied now vs season avg; recalculated vs line when lines load
+    // ── Hit rate vs season avg (recalculated vs line when lines load) ──
+    const hitR = (gameSet, stat, benchmark) => {
+      if(benchmark===null) return null;
+      const vals = gameSet.map(g=>g[stat]).filter(v=>v!==null);
+      if(!vals.length) return null;
+      return Math.round((vals.filter(v=>v>benchmark).length / vals.length)*100);
+    };
     if(games.length >= 3){
-      const hitR = (stat, benchmark) => {
-        if(benchmark===null) return null;
-        const vals = l10games.map(g=>g[stat]).filter(v=>v!==null);
-        if(!vals.length) return null;
-        return Math.round((vals.filter(v=>v>benchmark).length / vals.length)*100);
-      };
-      p.hitRate.pts = hitR('pts', p.stats.pts);
-      p.hitRate.reb = hitR('reb', p.stats.reb);
-      p.hitRate.ast = hitR('ast', p.stats.ast);
+      p.hitRate.pts = hitR(qualGames,'pts',p.stats.pts);
+      p.hitRate.reb = hitR(qualGames,'reb',p.stats.reb);
+      p.hitRate.ast = hitR(qualGames,'ast',p.stats.ast);
     }
 
-    // Streak — consecutive over/under vs season avg from most recent game backwards
-    // Uses all fetched games (up to last 20) so longer streaks are captured
+    // ── NEW: Home/Away split hit rates ──────────────────
+    const homeGames = qualGames.filter(g=>g.wasHome===true);
+    const awayGames = qualGames.filter(g=>g.wasHome===false);
+    if(homeGames.length >= 3){
+      p.homeHitRate.pts = hitR(homeGames,'pts',p.stats.pts);
+      p.homeHitRate.reb = hitR(homeGames,'reb',p.stats.reb);
+      p.homeHitRate.ast = hitR(homeGames,'ast',p.stats.ast);
+    }
+    if(awayGames.length >= 3){
+      p.awayHitRate.pts = hitR(awayGames,'pts',p.stats.pts);
+      p.awayHitRate.reb = hitR(awayGames,'reb',p.stats.reb);
+      p.awayHitRate.ast = hitR(awayGames,'ast',p.stats.ast);
+    }
+
+    // ── NEW: Opponent-specific hit rate ─────────────────
+    if(p.todayOpp){
+      const oppGames = qualGames.filter(g=>g.opp===p.todayOpp);
+      if(oppGames.length >= 2){
+        p.oppHitRate.pts = hitR(oppGames,'pts',p.stats.pts);
+        p.oppHitRate.reb = hitR(oppGames,'reb',p.stats.reb);
+        p.oppHitRate.ast = hitR(oppGames,'ast',p.stats.ast);
+      }
+    }
+
+    // ── NEW: Rest days since last game ──────────────────
+    const datedGames = qualGames.filter(g=>g.gameDate).sort((a,b)=>a.gameDate.localeCompare(b.gameDate));
+    if(datedGames.length >= 1){
+      p.lastGameDate = datedGames[datedGames.length-1].gameDate;
+      const last = new Date(p.lastGameDate);
+      const today = new Date(); today.setHours(0,0,0,0);
+      p.restDays = Math.round((today - last) / (1000*60*60*24));
+    }
+
+    // ── NEW: FGA trend for points props ─────────────────
+    const fgaVals = qualGames.map(g=>g.fga).filter(v=>v!==null);
+    if(fgaVals.length >= 5){
+      const avgArr = arr => arr.reduce((a,b)=>a+b,0)/arr.length;
+      const l5fga = avgArr(fgaVals.slice(-5));
+      const l10fga = avgArr(fgaVals.slice(-10));
+      p.fgaTrend = parseFloat((l5fga - l10fga).toFixed(1));
+    }
+
+    // ── Streak ────────────────────────────────────────────
     const calcStreak = (stat, benchmark) => {
       if(benchmark===null) return 0;
-      const vals = games.map(g=>g[stat]).filter(v=>v!==null);
+      const vals = qualGames.map(g=>g[stat]).filter(v=>v!==null);
       if(!vals.length) return 0;
       const last = vals[vals.length-1];
       const dir = last > benchmark ? 1 : -1;
@@ -778,8 +1117,8 @@ async function fetchHL(id) {
     p.streak.reb = calcStreak('reb', p.stats.reb);
     p.streak.ast = calcStreak('ast', p.stats.ast);
 
-    // Minutes trend — L5 avg mins vs L10 avg mins (positive = getting more run)
-    const minsVals = games.map(g=>g.mins).filter(v=>v!=null);
+    // ── Minutes trend ─────────────────────────────────────
+    const minsVals = qualGames.map(g=>g.mins).filter(v=>v!=null);
     if(minsVals.length >= 5){
       const avgMins = arr => arr.reduce((a,b)=>a+b,0)/arr.length;
       const l5mins = avgMins(minsVals.slice(-5));
@@ -792,6 +1131,8 @@ async function fetchHL(id) {
 
 // ── Main ──────────────────────────────────────────────
 async function loadAll() {
+  SUMMARY_CACHE = {}; // clear cache for fresh load
+  Object.keys(RECENT_BOXSCORE_CACHE).forEach(k=>delete RECENT_BOXSCORE_CACHE[k]);
   try {
     if (!await fetchGames()) {
       document.getElementById('pbar').style.display='none';
@@ -815,8 +1156,13 @@ async function loadAll() {
   prog(8,'Loading active rosters...','');
   await Promise.all(GAMES.map(async g => {
     const tag=`${g.away}@${g.home}`;
-    try{await fetchRoster(g.homeId,g.home,tag,true,g.gameTotal);}catch(e){}
-    try{await fetchRoster(g.awayId,g.away,tag,false,g.gameTotal);}catch(e){}
+    try{await fetchRoster(g.homeId,g.home,tag,true,g.gameTotal,g.homeSpread);}catch(e){}
+    try{await fetchRoster(g.awayId,g.away,tag,false,g.gameTotal,g.homeSpread);}catch(e){}
+    // Set today's opponent on each player
+    for(const p of Object.values(PLAYERS)){
+      if(p.game !== tag) continue;
+      p.todayOpp = p.isHome ? g.away : g.home;
+    }
   }));
   prog(22,'Rosters loaded',`${Object.keys(PLAYERS).length} active players`);
   render();
@@ -836,10 +1182,11 @@ async function loadAll() {
 
   const ids=Object.keys(PLAYERS); let done=0;
 
-  // Averages + defensive ranks — all in parallel
+  // Averages + defensive ranks + odds — all in parallel
   prog(24,`Loading averages for ${ids.length} players...`,'');
   await Promise.all([
     fetchDefRanks(),
+    fetchOdds(),
     ...ids.map(id=>fetchAvgs(id))
   ]);
   prog(36,'Averages loaded',`${ids.length} players`);
@@ -898,6 +1245,100 @@ function si(v){ return(v==null||isNaN(v))?'–':String(Math.round(v)); }
 // ── Card ──────────────────────────────────────────────
 function cardHTML(p) {
   const{id,name,team,game,pos,gp,stats:s,hi,lo,l10,img,hlLoaded,lineSource}=p;
+
+  // ── Floor Signals ─────────────────────────────────────
+  // For each stat, compute: at each bettable round number, how many of the
+  // last N games has the player stayed AT OR ABOVE that number?
+  // This is a hard count, not a probability — either he's gone under or he hasn't.
+  const floorTiers = (avg) => {
+    if(avg === null) return [];
+    if(avg < 15) return [5, 10, 15, 20, 25, 30];
+    if(avg < 20) return [10, 15, 20, 25, 30];
+    if(avg < 30) return [15, 20, 25, 30];
+    return [20, 25, 30];
+  };
+
+  const computeFloorSignals = (stat, avg) => {
+    if(!p.allGames || !p.allGames.length || avg === null) return [];
+    const tiers = floorTiers(avg);
+    const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+    if(!vals.length) return [];
+
+    return tiers.map(tier => {
+      // Count consecutive games from most recent backwards staying >= tier
+      let streak = 0;
+      for(let i=vals.length-1; i>=0; i--){
+        if(vals[i] >= tier) streak++;
+        else break;
+      }
+      // Also count total games >= tier in window (for hit rate display)
+      const totalHits = vals.filter(v=>v>=tier).length;
+      const hitPct = Math.round((totalHits / vals.length) * 100);
+      return {tier, streak, total: vals.length, totalHits, hitPct};
+    });
+  };
+
+  // Same caps for reb/ast — the user's tiering is for points, but reb/ast use smaller round numbers
+  const floorTiersReb = (avg) => {
+    if(avg === null) return [];
+    if(avg < 4) return [2, 4, 6, 8];
+    if(avg < 7) return [4, 6, 8, 10];
+    if(avg < 10) return [6, 8, 10, 12];
+    return [8, 10, 12, 14];
+  };
+  const floorTiersAst = (avg) => {
+    if(avg === null) return [];
+    if(avg < 3) return [2, 4, 6, 8];
+    if(avg < 5) return [3, 5, 7, 9];
+    if(avg < 8) return [5, 7, 9, 11];
+    return [7, 9, 11, 13];
+  };
+
+  const computeFloorAlt = (stat, tiers) => {
+    if(!p.allGames || !p.allGames.length || !tiers.length) return [];
+    const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+    if(!vals.length) return [];
+    return tiers.map(tier => {
+      let streak = 0;
+      for(let i=vals.length-1; i>=0; i--){
+        if(vals[i] >= tier) streak++;
+        else break;
+      }
+      const totalHits = vals.filter(v=>v>=tier).length;
+      const hitPct = Math.round((totalHits / vals.length) * 100);
+      return {tier, streak, total: vals.length, totalHits, hitPct};
+    });
+  };
+
+  const ptsSignals = computeFloorSignals('pts', s.pts);
+  const rebSignals = computeFloorAlt('reb', floorTiersReb(s.reb));
+  const astSignals = computeFloorAlt('ast', floorTiersAst(s.ast));
+
+  // Render a floor row — shows tiers as chips with streak counts
+  const renderFloorRow = (label, signals) => {
+    if(!signals.length) return '';
+    const chips = signals.map(sig => {
+      const isLock = sig.streak >= 10;       // 10+ straight games — bulletproof
+      const isStrong = sig.streak >= 5;       // 5-9 straight — strong
+      const isOk = sig.streak >= 2;           // 2-4 straight — okay
+      const cls = isLock ? 'floor-lock' : isStrong ? 'floor-strong' : isOk ? 'floor-ok' : 'floor-weak';
+      const icon = isLock ? '🔒' : isStrong ? '✓' : isOk ? '·' : '✗';
+      return `<div class="floor-chip ${cls}" title="${sig.streak} straight games at ${sig.tier}+ (overall ${sig.totalHits}/${sig.total} = ${sig.hitPct}%)">
+        <span class="floor-tier">${sig.tier}+</span>
+        <span class="floor-streak">${icon} ${sig.streak}</span>
+      </div>`;
+    }).join('');
+    return `<div class="floor-row"><span class="floor-label">${label}</span>${chips}</div>`;
+  };
+
+  const floorBlock = (ptsSignals.length || rebSignals.length || astSignals.length) ? `
+    <div class="floor-section">
+      <div class="floor-title">🏰 FLOOR SIGNALS <span class="floor-sub">consecutive games at or above</span></div>
+      ${renderFloorRow('PTS', ptsSignals)}
+      ${renderFloorRow('REB', rebSignals)}
+      ${renderFloorRow('AST', astSignals)}
+    </div>` : '';
+
   const hlC=hlLoaded
     ?['pts','reb','ast'].map(st=>`<div class="hl-cell"><span class="hl-stat">${st.toUpperCase()}</span><span class="hl-hi">${si(hi[st])}</span><span class="hl-lo">${si(lo[st])}</span></div>`).join('')
     :`<div class="hl-loading">Loading last ${LAST_N} games...</div>`;
@@ -948,7 +1389,12 @@ function cardHTML(p) {
       }
       const cls = bet.score>=75?'hot':bet.score>=60?'hot':'neu';
       const color = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
-      return `<div class="trend-cell" style="border:1px solid ${bet.score>=70?color+'44':'transparent'}"><div class="trend-label">${stat.toUpperCase()} SCORE</div><div class="trend-val" style="color:${color}">${bet.score}/100${bet.score>=70?' ✓':''}</div></div>`;
+      const penalties = [];
+      if(bet.volatilityPenalty && bet.volatilityPenalty < 0) penalties.push(`vol ${bet.volatilityPenalty}`);
+      if(bet.regressionPenalty && bet.regressionPenalty < 0) penalties.push(`reg ${bet.regressionPenalty}`);
+      if(bet.sampleSize < 10) penalties.push(`n=${bet.sampleSize}`);
+      const penTxt = penalties.length ? ` · ${penalties.join(' ')}` : '';
+      return `<div class="trend-cell" style="border:1px solid ${bet.score>=70?color+'44':'transparent'}"><div class="trend-label">${stat.toUpperCase()} SCORE</div><div class="trend-val" style="color:${color};font-size:${penTxt?'10px':'inherit'}">${bet.score}/100${bet.score>=70?' ✓':''}${penTxt?`<span style="color:var(--muted)">${penTxt}</span>`:''}</div></div>`;
     });
     return `<div class="trend-row" style="margin-bottom:7px">${cells.join('')}<div style="grid-column:span 3;font-size:8px;color:var(--muted);padding:2px 0">✓ = qualifies for parlay (70+, both signals agree, 2.5pt cushion)</div></div>`;
   })();
@@ -1006,8 +1452,12 @@ function cardHTML(p) {
     const pCls = pLine!==null?(g.pts>pLine?'hit':g.pts<pLine?'miss':'neu'):'neu';
     const rCls = rLine!==null?(g.reb>rLine?'hit':g.reb<rLine?'miss':'neu'):'neu';
     const aCls = aLine!==null?(g.ast>aLine?'hit':g.ast<aLine?'miss':'neu'):'neu';
+    // Format date: "Apr 10" 
+    const dateStr = g.gameDate ? new Date(g.gameDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '–';
+    const oppStr = g.opp || '–';
     return `<div class="gamelog-row">
-      <span class="gamelog-num">G-${i+1}</span>
+      <span class="gamelog-date">${dateStr}</span>
+      <span class="gamelog-opp">${oppStr}</span>
       <span class="gamelog-val ${pCls}">${g.pts!==null?Math.round(g.pts):'–'}</span>
       <span class="gamelog-val ${rCls}">${g.reb!==null?Math.round(g.reb):'–'}</span>
       <span class="gamelog-val ${aCls}">${g.ast!==null?Math.round(g.ast):'–'}</span>
@@ -1019,14 +1469,60 @@ function cardHTML(p) {
       <span>📋 Last 10 Games</span><span id="gl-arrow-${id}">▼</span>
     </button>
     <div class="gamelog-body" id="gl-${id}">
-      <div class="gamelog-hdr"><span>#</span><span>PTS</span><span>REB</span><span>AST</span></div>
+      <div class="gamelog-hdr"><span>DATE</span><span>OPP</span><span>PTS</span><span>REB</span><span>AST</span></div>
       ${glRows}
     </div>` : '';
 
-  return `<div class="pcard" id="card-${id}"><div class="chead"><div class="ava">${ava}</div><div style="flex:1;min-width:0"><div class="pname">${name}</div><div class="pmeta"><b>${team}</b> · ${pos}${gp?` · ${gp} GP`:''}</div></div><span class="gtag">${game}</span></div><div class="cbody">${ctxRow}<div class="srow"><div class="scell"><div class="slabel">PTS SZN AVG</div><div class="sval">${sf(s.pts)}</div></div><div class="scell"><div class="slabel">REB SZN AVG</div><div class="sval">${sf(s.reb)}</div></div><div class="scell"><div class="slabel">AST SZN AVG</div><div class="sval">${sf(s.ast)}</div></div></div><div class="srow" style="margin-bottom:8px"><div class="scell" style="opacity:0.75"><div class="slabel">PTS L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.pts)}</div></div><div class="scell" style="opacity:0.75"><div class="slabel">REB L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.reb)}</div></div><div class="scell" style="opacity:0.75"><div class="slabel">AST L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.ast)}</div></div></div><div class="trend-row">${hrCell('pts')}${hrCell('reb')}${hrCell('ast')}${stCell('pts')}${stCell('reb')}${stCell('ast')}</div><div class="hl-title">Last ${LAST_N} Games — High <span style="color:var(--over)">▲</span> Low <span style="color:var(--under)">▼</span> <span style="color:var(--muted);font-weight:400;font-size:8px">(≥${MIN_MINS} min)</span></div><div class="hl-grid">${hlC}</div>${scoreRow}<div class="lines-wrap"><div class="lines-hdr">Lines${lineSource?`<span class="lines-src" style="color:var(--over)">● ${lineSource}</span>`:`<span class="lines-src" style="color:var(--muted)">fetching...</span>`}</div><div style="display:grid;grid-template-columns:36px 1fr 62px 62px;gap:5px;margin-bottom:4px"><span></span><span></span><span style="font-size:8px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-align:center">SZN</span><span style="font-size:8px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-align:center">L10</span></div>${lrs}</div>${gameLog}</div></div>`;
+  return `<div class="pcard" id="card-${id}"><div class="chead"><div class="ava">${ava}</div><div style="flex:1;min-width:0"><div class="pname">${name}</div><div class="pmeta"><b>${team}</b> · ${pos}${gp?` · ${gp} GP`:''}</div></div><span class="gtag">${game}</span></div><div class="cbody">${ctxRow}<div class="srow"><div class="scell"><div class="slabel">PTS SZN AVG</div><div class="sval">${sf(s.pts)}</div></div><div class="scell"><div class="slabel">REB SZN AVG</div><div class="sval">${sf(s.reb)}</div></div><div class="scell"><div class="slabel">AST SZN AVG</div><div class="sval">${sf(s.ast)}</div></div></div><div class="srow" style="margin-bottom:8px"><div class="scell" style="opacity:0.75"><div class="slabel">PTS L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.pts)}</div></div><div class="scell" style="opacity:0.75"><div class="slabel">REB L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.reb)}</div></div><div class="scell" style="opacity:0.75"><div class="slabel">AST L10 Avg</div><div class="sval" style="font-size:16px">${sf(l10.ast)}</div></div></div><div class="trend-row">${hrCell('pts')}${hrCell('reb')}${hrCell('ast')}${stCell('pts')}${stCell('reb')}${stCell('ast')}</div><div class="hl-title">Last ${LAST_N} Games — High <span style="color:var(--over)">▲</span> Low <span style="color:var(--under)">▼</span> <span style="color:var(--muted);font-weight:400;font-size:8px">(all games)</span></div><div class="hl-grid">${hlC}</div>${scoreRow}<div class="lines-wrap"><div class="lines-hdr">Lines${lineSource?`<span class="lines-src" style="color:var(--over)">● ${lineSource}</span>`:`<span class="lines-src" style="color:var(--muted)">fetching...</span>`}</div><div style="display:grid;grid-template-columns:36px 1fr 62px 62px;gap:5px;margin-bottom:4px"><span></span><span></span><span style="font-size:8px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-align:center">SZN</span><span style="font-size:8px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-align:center">L10</span></div>${lrs}</div>${floorBlock}${gameLog}</div></div>`;
 }
 
 // ── Render ────────────────────────────────────────────
+// ── Floor lock detector for filtering ─────────────────
+// Returns true if the player has at least one 10+ game streak
+// at or above any bettable tier on any stat (pts/reb/ast)
+function hasFloorLock(p) {
+  if(!p.allGames || !p.allGames.length) return false;
+  const tierMap = {
+    pts: (avg) => {
+      if(avg===null) return [];
+      if(avg < 15) return [5, 10, 15, 20, 25, 30];
+      if(avg < 20) return [10, 15, 20, 25, 30];
+      if(avg < 30) return [15, 20, 25, 30];
+      return [20, 25, 30];
+    },
+    reb: (avg) => {
+      if(avg===null) return [];
+      if(avg < 4) return [2, 4, 6, 8];
+      if(avg < 7) return [4, 6, 8, 10];
+      if(avg < 10) return [6, 8, 10, 12];
+      return [8, 10, 12, 14];
+    },
+    ast: (avg) => {
+      if(avg===null) return [];
+      if(avg < 3) return [2, 4, 6, 8];
+      if(avg < 5) return [3, 5, 7, 9];
+      if(avg < 8) return [5, 7, 9, 11];
+      return [7, 9, 11, 13];
+    }
+  };
+  for(const stat of ['pts','reb','ast']){
+    const tiers = tierMap[stat](p.stats[stat]);
+    if(!tiers.length) continue;
+    const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+    if(!vals.length) continue;
+    for(const tier of tiers){
+      // Count streak from most recent backwards
+      let streak = 0;
+      for(let i=vals.length-1; i>=0; i--){
+        if(vals[i] >= tier) streak++;
+        else break;
+      }
+      if(streak >= 10) return true;
+    }
+  }
+  return false;
+}
+
 function render() {
   const grid=document.getElementById('pgrid');
   const search=document.getElementById('fsearch').value.toLowerCase();
@@ -1038,6 +1534,7 @@ function render() {
   if(filt==='under') list=list.filter(p=>['pts','reb','ast'].some(s=>{const d=getDiff(p,s);return d!==null&&d<-0.9;}));
   if(filt==='lined') list=list.filter(p=>['pts','reb','ast'].some(s=>getLine(p,s)!==null));
   if(filt==='parlay') list=list.filter(p=>['pts','reb','ast'].some(s=>{ const b=scoreBetRelaxed(p,s); return b!==null&&b.score>=50; }));
+  if(filt==='locks') list=list.filter(p=>hasFloorLock(p));
   const maxSznDiff = p => Math.max(...['pts','reb','ast'].map(s=>{ const d=getDiff(p,s); return d===null?-1:Math.abs(d); }));
   const maxL10Diff = p => Math.max(...['pts','reb','ast'].map(s=>{ const d=getDiffL10(p,s); return d===null?-1:Math.abs(d); }));
   // Helper: best parlay score across all stats for a player
@@ -1117,7 +1614,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 //   Min trend 0-5:  small bonus
 
 const MIN_HIT_RATE = 70;
-const MIN_SCORE    = 50;
+const MIN_SCORE    = 45; // slightly lower threshold since multiplicative is stricter
 
 function scoreBet(p, stat) {
   const line = getLine(p, stat);
@@ -1134,76 +1631,181 @@ function scoreBet(p, stat) {
   const side = dL10 >= 0 ? 'over' : 'under';
   const hrAligned = side==='over' ? hr : 100-hr;
 
-  // Hard filter 1: hit rate must be 70%+
+  // ── Hard filters ─────────────────────────────────────
   if(hrAligned < MIN_HIT_RATE) return null;
-
-  // Hard filter 2: season avg must agree with L10 direction
-  // (both point same way = stronger conviction)
   if(dSzn !== null) {
     const sznSide = dSzn >= 0 ? 'over' : 'under';
-    if(sznSide !== side) return null; // signals conflict — skip
+    if(sznSide !== side) return null;
   }
-
-  // Hard filter 3: opposing streak ≥ 2 games = too risky
+  // Relative cushion gate: 8% of line (fair across pts/reb/ast)
+  const relCushion = line > 0 ? Math.abs(dL10) / line : 0;
+  if(relCushion < 0.08) return null;
   const streakAligned = side==='over' ? strk : -strk;
   if(streakAligned <= -2) return null;
+  // Minutes gate: player losing significant minutes = skip
+  if(mt !== null && mt < -4) return null;
+  // Blowout risk: large spread = garbage time danger for counting stats
+  if(p.blowoutRisk) return null;
 
-  // Scoring
-  const hrScore   = ((hrAligned - MIN_HIT_RATE) / (100 - MIN_HIT_RATE)) * 30;
-  const diffScore = (Math.min(Math.abs(dL10), 8) / 8) * 35;
+  // Back-to-back gate: rest=0 means played yesterday — real fatigue risk
+  if(p.restDays !== null && p.restDays === 0) return null;
 
-  // Season diff bonus — how far season avg is also over/under the line
-  let sznScore = 0;
+  // ── Use most specific hit rate available ────────────
+  // Priority: opponent-specific > home/away split > overall
+  // This is what hrAligned is now based on
+  const splitHR = p.isHome
+    ? (p.homeHitRate?.[stat] != null ? p.homeHitRate[stat] : p.hitRate[stat])
+    : (p.awayHitRate?.[stat] != null ? p.awayHitRate[stat] : p.hitRate[stat]);
+  const useHR = splitHR != null ? splitHR : p.hitRate[stat];
+  const useHRAligned = side==='over' ? useHR : (useHR !== null ? 100-useHR : null);
+  if(useHRAligned === null) return null;
+  // Override hrAligned with the more specific value
+  const hrAlignedFinal = useHRAligned;
+  if(hrAlignedFinal < MIN_HIT_RATE) return null;
+
+  // ── Multiplicative confidence factors (each 0–1) ────
+  // Every weak signal pulls the whole score down.
+
+  // Factor 1: Hit rate — using most specific available (home/away split preferred)
+  const hrFactor = (hrAlignedFinal - MIN_HIT_RATE) / (100 - MIN_HIT_RATE);
+
+  // Factor 2: Relative cushion — % above line, capped at 40% = 1.0
+  const cushionFactor = Math.max(0.1, Math.min(relCushion / 0.40, 1.0));
+
+  // Factor 3: Season agreement strength (0.5 = borderline, 1.0 = strongly agrees)
+  let sznFactor = 0.5;
   if(dSzn !== null) {
     const sznAligned = side==='over' ? dSzn : -dSzn;
-    sznScore = sznAligned > 0 ? Math.min(sznAligned/8, 1) * 15 : 0;
+    sznFactor = sznAligned > 0 ? 0.5 + Math.min(sznAligned/8, 1) * 0.5 : 0.5;
   }
 
-  // Streak: positive bonus, small negative penalty (hard filter already killed big negatives)
-  let streakScore = 0;
-  if(streakAligned > 0) streakScore = (Math.min(streakAligned,5)/5)*15;
-  else if(streakAligned === -1) streakScore = -5; // minor caution
+  // Factor 4: Streak — weaker signal, narrow range 0.75–1.0
+  // Only sustained 4-5 game streaks get meaningful credit
+  let streakFactor = 0.80;
+  if(streakAligned >= 5) streakFactor = 1.0;
+  else if(streakAligned >= 3) streakFactor = 0.92;
+  else if(streakAligned >= 1) streakFactor = 0.85;
+  else if(streakAligned === -1) streakFactor = 0.75;
 
-  const minsScore = mt !== null && mt > 0 ? Math.min(mt/3,1)*5 : 0;
+  // Factor 5: Context (mins trend, pace, def rank, FGA trend, opp hit rate, rest)
+  let contextBonus = 1.0;
+  if(mt !== null && mt > 0) contextBonus += Math.min(mt/3,1) * 0.05;
+  const paceAdj = p.gameTotal!==null?(p.gameTotal>=230?0.05:p.gameTotal>=220?0.03:p.gameTotal<=210?-0.03:0):0;
+  contextBonus += paceAdj;
+  if(p.oppDefRank!==null && stat==='pts'){
+    const defAdj = side==='over'
+      ? (p.oppDefRank>=22?0.08:p.oppDefRank>=16?0.04:p.oppDefRank<=10?-0.05:0)
+      : (p.oppDefRank<=10?0.05:p.oppDefRank<=16?0.02:p.oppDefRank>=22?-0.04:0);
+    contextBonus += defAdj;
+  }
+  // FGA trend bonus for pts: rising attempts = more scoring opportunity
+  if(stat==='pts' && p.fgaTrend !== null){
+    const fgaAdj = p.fgaTrend>=2?0.06:p.fgaTrend>=1?0.03:p.fgaTrend<=-2?-0.05:p.fgaTrend<=-1?-0.02:0;
+    contextBonus += fgaAdj;
+  }
+  // Opponent-specific hit rate bonus
+  if(p.todayOpp && p.oppHitRate?.[stat] != null){
+    const oppHRA = side==='over' ? p.oppHitRate?.[stat] : 100-p.oppHitRate?.[stat];
+    const oppAdj = oppHRA>=80?0.07:oppHRA>=70?0.03:oppHRA<50?-0.05:oppHRA<60?-0.02:0;
+    contextBonus += oppAdj;
+  }
+  // Rest days: well-rested = small positive
+  if(p.restDays !== null && p.restDays >= 3) contextBonus += 0.03;
+  contextBonus = Math.max(0.8, Math.min(contextBonus, 1.20));
 
-  const paceScore = p.gameTotal!==null?(p.gameTotal>=230?5:p.gameTotal>=220?3:p.gameTotal<=210?-3:0):0;
-  let defScore=0;
-  if(p.oppDefRank!==null&&stat==='pts'){
-    if(side==='over') defScore=p.oppDefRank>=22?8:p.oppDefRank>=16?4:p.oppDefRank<=10?-5:0;
-    else defScore=p.oppDefRank<=10?5:p.oppDefRank<=16?2:p.oppDefRank>=22?-4:0;
+  // ── Sample size — use allGames for accuracy ────────
+  const allG = p.allGames&&p.allGames.length ? p.allGames : p.recentGames;
+  const sampleSize = allG.filter(g=>g[stat]!==null).length;
+  const sampleWeight = sampleSize >= 15 ? 1.0 : sampleSize >= 10 ? 0.92 : sampleSize >= 7 ? 0.80 : sampleSize >= 5 ? 0.65 : 0.50;
+
+  // ── Volatility factor (consistent player = 1.0, high variance = down to 0.7)
+  const vals = allG.map(g=>g[stat]).filter(v=>v!==null);
+  let volatilityFactor = 1.0;
+  let volatilityPenalty = 0;
+  if(vals.length >= 4){
+    const mean = vals.reduce((a,b)=>a+b,0)/vals.length;
+    const std = Math.sqrt(vals.reduce((a,b)=>a+Math.pow(b-mean,2),0)/vals.length);
+    const cv = mean > 0 ? std/mean : 0;
+    volatilityFactor = cv > 0.4 ? Math.max(0.70, 1.0 - (cv - 0.4) * 1.5) : 1.0;
+    volatilityPenalty = Math.round((volatilityFactor - 1.0) * 100);
   }
 
-  const total = Math.round(hrScore + diffScore + sznScore + streakScore + minsScore + paceScore + defScore);
+  // ── Regression to mean factor ──────────────────────
+  let regressionFactor = 1.0;
+  let regressionPenalty = 0;
+  if(dSzn !== null && p.stats[stat] !== null){
+    const l10Avg = p.l10[stat];
+    const sznAvg = p.stats[stat];
+    if(l10Avg !== null && sznAvg > 0){
+      const hotness = (l10Avg - sznAvg) / sznAvg;
+      const inPickDir = (side==='over' && hotness > 0.25) || (side==='under' && hotness < -0.25);
+      if(inPickDir){
+        regressionFactor = Math.max(0.80, 1.0 - (Math.abs(hotness) - 0.25) * 0.5);
+        regressionPenalty = Math.round((regressionFactor - 1.0) * 100);
+      }
+    }
+  }
+
+  // ── Final multiplicative score ─────────────────────
+  // Use geometric mean of 4 core factors (4th root of product)
+  // This keeps scores in a sensible 0–100 range while preserving
+  // the multiplicative property — a weak signal pulls everything down
+  const coreProd = hrFactor * cushionFactor * sznFactor * streakFactor;
+  const geoMean = coreProd > 0 ? Math.pow(coreProd, 1/4) : 0;
+
+  const total = Math.round(
+    geoMean * 100            // geometric mean → 0–100
+    * contextBonus           // context ±15%
+    * sampleWeight           // sample size discount
+    * volatilityFactor       // volatility discount
+    * regressionFactor       // regression discount
+  );
+
   if(total < MIN_SCORE) return null;
 
-  return { stat, side, line, score: Math.min(total,100), hrAligned, streakAligned, dL10, dSzn, mt };
+  return {
+    stat, side, line,
+    score: Math.min(total, 100),
+    hrAligned: hrAlignedFinal, streakAligned, dL10, dSzn, mt,
+    volatilityPenalty, regressionPenalty, sampleSize,
+    // expose factors for debugging
+    _factors: { hr: +hrFactor.toFixed(2), cushion: +cushionFactor.toFixed(2),
+                szn: +sznFactor.toFixed(2), streak: +streakFactor.toFixed(2),
+                context: +contextBonus.toFixed(2), vol: +volatilityFactor.toFixed(2),
+                reg: +regressionFactor.toFixed(2), sample: sampleWeight }
+  };
 }
 
 // ── Recalculate hit rates vs actual lines ─────────────
 function recalcHitRates() {
   for (const p of Object.values(PLAYERS)) {
-    if (!p.recentGames.length) continue;
-    // We need l10 game values — reconstruct from recentGames (last 5) + stored l10
-    // Use getLine to get the actual line and recalc
+    const src = p.allGames && p.allGames.length ? p.allGames : p.recentGames;
+    if (!src.length) continue;
+    const hitVsLine = (gameSet, stat, line) => {
+      const vals = gameSet.map(g=>g[stat]).filter(v=>v!==null);
+      if(!vals.length) return null;
+      return Math.round((vals.filter(v=>v>line).length / vals.length)*100);
+    };
     for (const stat of ['pts','reb','ast']) {
       const line = getLine(p, stat);
-      if (line === null) continue; // no line, keep season-avg based hit rate
-      // Recalculate using l10 scores stored implicitly via recentGames
-      // recentGames is last 5 — for l10 we use what we stored
-      // Best approach: use the l10 avg games we already computed
-      // We stored recentGames (5 games) — for a proper l10 hit rate we'd need all 10
-      // So we compare l10 avg direction vs line as a proxy:
-      // If l10 avg > line: count how many of last 5 beat the line (scaled to 10)
-      const last5vals = p.recentGames.map(g=>g[stat]).filter(v=>v!==null);
-      if(!last5vals.length) continue;
-      const hits = last5vals.filter(v=>v>line).length;
-      // Scale to percentage of games we have
-      p.hitRate[stat] = Math.round((hits/last5vals.length)*100);
+      if (line === null) continue;
+      // Overall hit rate vs actual line (all games)
+      p.hitRate[stat] = hitVsLine(src, stat, line);
+      // Home/away splits vs actual line
+      const homeG = src.filter(g=>g.wasHome===true);
+      const awayG = src.filter(g=>g.wasHome===false);
+      if(homeG.length >= 3) if(p.homeHitRate) p.homeHitRate[stat] = hitVsLine(homeG, stat, line);
+      if(awayG.length >= 3) if(p.awayHitRate) p.awayHitRate[stat] = hitVsLine(awayG, stat, line);
+      // Opponent-specific vs actual line
+      if(p.todayOpp){
+        const oppG = src.filter(g=>g.opp===p.todayOpp);
+        if(oppG.length >= 2) if(p.oppHitRate) p.oppHitRate[stat] = hitVsLine(oppG, stat, line);
+      }
     }
   }
 }
 
-// ── Parlay scorer — global scope so cards can use it ─
+// ── Parlay scorer — same geometric mean system as Lock ─
 function scoreBetRelaxed(p, stat) {
   const line = getLine(p, stat);
   if(line === null) return null;
@@ -1220,33 +1822,94 @@ function scoreBetRelaxed(p, stat) {
     const sznSide = dSzn >= 0 ? 'over' : 'under';
     if(sznSide !== side) return null;
   }
-  if(Math.abs(dL10) < 2.5) return null;
+  const relCushion = line > 0 ? Math.abs(dL10) / line : 0;
+  if(relCushion < 0.08) return null;
   const streakAligned = side==='over' ? strk : -strk;
   if(streakAligned <= -3) return null;
-  const hrScore = ((hrAligned-70)/30)*30;
-  const diffScore = (Math.min(Math.abs(dL10),8)/8)*35;
-  let sznScore=0;
-  if(dSzn!==null){ const sa=side==='over'?dSzn:-dSzn; sznScore=sa>0?Math.min(sa/8,1)*15:0; }
-  let streakScore=0;
-  if(streakAligned>0) streakScore=(Math.min(streakAligned,5)/5)*15;
-  else if(streakAligned===-1) streakScore=-5;
-  const minsScore=mt!==null&&mt>0?Math.min(mt/3,1)*5:0;
+  if(mt !== null && mt < -4) return null;
+  if(p.blowoutRisk) return null;
+  const b2bPenalty = (p.restDays !== null && p.restDays === 0) ? 0.85 : 1.0;
 
-  // Game total bonus (0-5): high total = faster pace = more scoring opportunity
-  const paceScore = p.gameTotal!==null ? (p.gameTotal>=230?5:p.gameTotal>=220?3:p.gameTotal<=210?-3:0) : 0;
+  // Use home/away split hit rate if available, fall back to overall
+  const splitHR = p.isHome
+    ? (p.homeHitRate?.[stat] != null ? p.homeHitRate?.[stat] : hrAligned)
+    : (p.awayHitRate?.[stat] != null ? p.awayHitRate?.[stat] : hrAligned);
+  const hrAlignedFinal = side==='over' ? splitHR : 100 - splitHR;
+  if(hrAlignedFinal < 70) return null;
 
-  // Opponent defensive rank bonus (-5 to +8):
-  // rank 22-30 (weak D) = bonus for overs, rank 1-10 (strong D) = penalty for overs
-  let defScore = 0;
-  if(p.oppDefRank!==null && stat==='pts') {
-    if(side==='over')  defScore = p.oppDefRank>=22?8:p.oppDefRank>=16?4:p.oppDefRank<=10?-5:0;
-    else               defScore = p.oppDefRank<=10?5:p.oppDefRank<=16?2:p.oppDefRank>=22?-4:0;
+  // ── Multiplicative factors (geometric mean) ─────────
+  const hrFactor      = (hrAlignedFinal - 70) / 30;
+  const cushionFactor = Math.max(0.1, Math.min(relCushion / 0.40, 1.0));
+  let sznFactor = 0.5;
+  if(dSzn !== null){
+    const sa = side==='over' ? dSzn : -dSzn;
+    sznFactor = sa > 0 ? 0.5 + Math.min(sa/8,1)*0.5 : 0.5;
+  }
+  // Streak: weaker signal (same as Lock scorer)
+  let streakFactor = 0.80;
+  if(streakAligned >= 5) streakFactor = 1.0;
+  else if(streakAligned >= 3) streakFactor = 0.92;
+  else if(streakAligned >= 1) streakFactor = 0.85;
+  else if(streakAligned === -1) streakFactor = 0.75;
+
+  let contextBonus = 1.0;
+  if(mt !== null && mt > 0) contextBonus += Math.min(mt/3,1)*0.05;
+  const paceAdj = p.gameTotal!==null?(p.gameTotal>=230?0.05:p.gameTotal>=220?0.03:p.gameTotal<=210?-0.03:0):0;
+  contextBonus += paceAdj;
+  if(p.oppDefRank!==null && stat==='pts'){
+    const defAdj = side==='over'
+      ? (p.oppDefRank>=22?0.08:p.oppDefRank>=16?0.04:p.oppDefRank<=10?-0.05:0)
+      : (p.oppDefRank<=10?0.05:p.oppDefRank<=16?0.02:p.oppDefRank>=22?-0.04:0);
+    contextBonus += defAdj;
+  }
+  if(stat==='pts' && p.fgaTrend !== null){
+    const fgaAdj = p.fgaTrend>=2?0.06:p.fgaTrend>=1?0.03:p.fgaTrend<=-2?-0.05:p.fgaTrend<=-1?-0.02:0;
+    contextBonus += fgaAdj;
+  }
+  if(p.todayOpp && p.oppHitRate?.[stat] != null){
+    const oppHRA = side==='over' ? p.oppHitRate?.[stat] : 100-p.oppHitRate?.[stat];
+    const oppAdj = oppHRA>=80?0.07:oppHRA>=70?0.03:oppHRA<50?-0.05:oppHRA<60?-0.02:0;
+    contextBonus += oppAdj;
+  }
+  if(p.restDays !== null && p.restDays >= 3) contextBonus += 0.03;
+  contextBonus = Math.max(0.8, Math.min(contextBonus, 1.20));
+
+  const allG = p.allGames&&p.allGames.length ? p.allGames : p.recentGames;
+  const sampleSize = allG.filter(g=>g[stat]!==null).length;
+  const sampleWeight = sampleSize >= 15 ? 1.0 : sampleSize >= 10 ? 0.92 : sampleSize >= 7 ? 0.80 : sampleSize >= 5 ? 0.65 : 0.50;
+
+  const vals = allG.map(g=>g[stat]).filter(v=>v!==null);
+  let volatilityFactor = 1.0, volatilityPenalty = 0;
+  if(vals.length >= 4){
+    const mean = vals.reduce((a,b)=>a+b,0)/vals.length;
+    const std = Math.sqrt(vals.reduce((a,b)=>a+Math.pow(b-mean,2),0)/vals.length);
+    const cv = mean > 0 ? std/mean : 0;
+    volatilityFactor = cv > 0.4 ? Math.max(0.70, 1.0-(cv-0.4)*1.5) : 1.0;
+    volatilityPenalty = Math.round((volatilityFactor-1.0)*100);
   }
 
-  const total=Math.round(hrScore+diffScore+sznScore+streakScore+minsScore+paceScore+defScore);
-  if(total<50) return null;
-  return {stat,side,line,score:Math.min(total,100),hrAligned,streakAligned,dL10,dSzn,mt};
+  let regressionFactor = 1.0, regressionPenalty = 0;
+  if(dSzn !== null && p.stats[stat] !== null){
+    const l10Avg = p.l10[stat], sznAvg = p.stats[stat];
+    if(l10Avg !== null && sznAvg > 0){
+      const hotness = (l10Avg - sznAvg) / sznAvg;
+      const inPickDir = (side==='over' && hotness>0.25)||(side==='under' && hotness<-0.25);
+      if(inPickDir){
+        regressionFactor = Math.max(0.80, 1.0-(Math.abs(hotness)-0.25)*0.5);
+        regressionPenalty = Math.round((regressionFactor-1.0)*100);
+      }
+    }
+  }
+
+  const coreProd = hrFactor * cushionFactor * sznFactor * streakFactor;
+  const geoMean = coreProd > 0 ? Math.pow(coreProd, 1/4) : 0;
+  const total = Math.round(geoMean * 100 * contextBonus * sampleWeight * volatilityFactor * regressionFactor * b2bPenalty);
+
+  if(total < 40) return null;
+  return {stat, side, line, score:Math.min(total,100), hrAligned: hrAlignedFinal, streakAligned, dL10, dSzn, mt,
+          volatilityPenalty, regressionPenalty, sampleSize};
 }
+
 
 
 // ── Pick Tracker ─────────────────────────────────────
@@ -1469,78 +2132,60 @@ function renderBestBets() {
     </div>
   </div>`;
 
-  // ── Top Parlay of the Day ────────────────────────────
-  // Build relaxed pool — all player/stat combos scored
+  // ── Parlay pool — all qualifying player/stat combos ──
   const parlayPool = [];
   for(const p of players) {
     for(const stat of ['pts','reb','ast']) {
       const bet = scoreBetRelaxed(p, stat);
-      if(!bet) continue;
-      parlayPool.push({p,...bet});
+      if(bet) parlayPool.push({p,...bet});
     }
   }
-  parlayPool.sort((a,b) => b.score-a.score);
+  // Sort by score descending — no stat/player restrictions
+  parlayPool.sort((a,b) => b.score - a.score);
 
-  // Top parlay — best 3 legs, same player allowed if they have multiple strong stats
-  const parlayLegs = parlayPool.slice(0, 3);
+  // Helper: build N best legs from pool (unrestricted — same player/stat allowed)
+  const buildParlay = (n) => parlayPool.slice(0, n);
 
-  let parlayHtml = '';
-  if(parlayLegs.length >= 2) {
-    const avgScore = Math.round(parlayLegs.reduce((a,b)=>a+b.score,0)/parlayLegs.length);
-    const legRows = parlayLegs.map(bet => {
-      const scoreColor = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
-      const cushion = `${bet.dL10>0?'+':''}${bet.dL10.toFixed(1)}`;
-      return `<div class="pl-row">
-        <div class="pl-left">
-          <div class="pl-name">${bet.p.name}</div>
-          <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · ${bet.hrAligned}% hit · cushion ${cushion}</div>
-        </div>
-        <div class="pl-right">
-          <span class="pl-line">${bet.line}</span>
-          <span class="pl-side ${bet.side}">${bet.side.toUpperCase()}</span>
-          <span class="pl-score" style="color:${scoreColor}">${bet.score}/100</span>
-        </div>
-      </div>`;
-    }).join('');
+  const parlay3  = buildParlay(3);
+  const parlay5  = buildParlay(5);
+  const parlay8  = buildParlay(8);
 
-    parlayHtml = `<div class="top-parlay">
-      <div class="top-parlay-hdr">
-        <span class="top-parlay-title">🎯 TOP PARLAY OF THE DAY</span>
-        <span class="top-parlay-subtitle">${parlayLegs.length} legs · avg ${avgScore}/100</span>
+  // ── Parlay row renderer ──────────────────────────────
+  const parlayRow = (bet) => {
+    const scoreColor = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
+    const cushion = `${bet.dL10>0?'+':''}${bet.dL10.toFixed(1)}`;
+    return `<div class="pl-row">
+      <div class="pl-left">
+        <div class="pl-name">${bet.p.name}</div>
+        <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · ${bet.hrAligned}% hit · cushion ${cushion}</div>
       </div>
-      <div class="top-parlay-legs">${legRows}</div>
-    </div>`;
-  }
-
-  // ── 10-Leg Mega Parlay ───────────────────────────────
-  // Top 10 legs from the pool — duplicates allowed
-  const megaLegs = parlayPool.slice(0, 10);
-
-  let megaHtml = '';
-  if(megaLegs.length >= 4) {
-    const megaAvg = Math.round(megaLegs.reduce((a,b)=>a+b.score,0)/megaLegs.length);
-    const megaRows = megaLegs.map((bet,i) => {
-      const sideColor = bet.side==='over'?'var(--over)':'var(--under)';
-      return `<div class="mp-row">
-        <span class="mp-num">${i+1}</span>
-        <span class="mp-name">${bet.p.name}</span>
-        <span class="mp-pick"><b>${bet.line}</b> <span style="color:${sideColor}">${bet.side.toUpperCase()}</span> ${statLabel[bet.stat]} · ${bet.p.team}</span>
-      </div>`;
-    }).join('');
-
-    megaHtml = `<div class="mega-parlay">
-      <div class="mega-parlay-hdr">
-        <span class="mega-parlay-title">🚀 ${megaLegs.length}-LEG MEGA PARLAY</span>
-        <span class="mega-parlay-subtitle">avg ${megaAvg}/100 · high risk</span>
+      <div class="pl-right">
+        <span class="pl-line">${bet.line}</span>
+        <span class="pl-side ${bet.side}">${bet.side.toUpperCase()}</span>
+        <span class="pl-score" style="color:${scoreColor}">${bet.score}/100</span>
       </div>
-      <div class="mega-parlay-legs">${megaRows}</div>
     </div>`;
-  }
+  };
 
-  // ── Other Picks ──────────────────────────────────────
+  const parlayCard = (legs, label, emoji, color) => {
+    if(legs.length < 2) return '';
+    const avg = Math.round(legs.reduce((a,b)=>a+b.score,0)/legs.length);
+    return `<div class="top-parlay" style="border-color:${color}88;background:linear-gradient(135deg,${color}15,${color}05)">
+      <div class="top-parlay-hdr" style="background:${color}18;border-color:${color}30">
+        <span class="top-parlay-title" style="color:${color}">${emoji} ${label}</span>
+        <span class="top-parlay-subtitle">${legs.length} legs · avg ${avg}/100</span>
+      </div>
+      <div class="top-parlay-legs">${legs.map(parlayRow).join('')}</div>
+    </div>`;
+  };
+
+  const p3Html = parlayCard(parlay3, '3-LEG PARLAY', '🎯', 'var(--accent)');
+  const p5Html = parlayCard(parlay5, '5-LEG PARLAY', '🔥', '#f59e0b');
+  const p8Html = parlayCard(parlay8, '8-LEG PARLAY', '🚀', '#c084fc');
+
+  // ── Other Lock candidates ────────────────────────────
   const rankClass = i => i===0?'r1':i===1?'r2':i===2?'r3':'';
   const others = candidates.slice(1, 8);
-
   const cardHtmlBB = (bet, i) => {
     const {p, stat, side, line, score, streakAligned} = bet;
     return `<div class="bb-card">
@@ -1566,391 +2211,286 @@ function renderBestBets() {
     </div>`;
   };
 
-  // ── Game Parlays — picks per game (50+ score) ──────────────
-  let gameParlaysHtml = '';
-  if(GAMES.length) {
-    const gameParlaySections = [];
+  const othersHtml = others.length
+    ? `<div class="bb-section-hdr">⭐ OTHER LOCKS</div>` + others.map((b,i)=>cardHtmlBB(b,i)).join('')
+    : '';
 
-    for(const g of GAMES) {
-      const gameTag = `${g.away}@${g.home}`;
-      const gameBets = [];
-      for(const bet of parlayPool) {
-        if(bet.p.game !== gameTag) continue;
-        if(bet.score < 50) continue;
-        gameBets.push(bet);
+  // ── Floor Locks Ranking ──────────────────────────────
+  // For each player, find their single highest floor lock (longest streak at highest tier)
+  // Only includes players with 10+ game streaks; ranked by streak length, then by tier
+  const floorTiersByStat = {
+    pts: (avg) => {
+      if(avg===null) return [];
+      if(avg < 15) return [5, 10, 15, 20, 25, 30];
+      if(avg < 20) return [10, 15, 20, 25, 30];
+      if(avg < 30) return [15, 20, 25, 30];
+      return [20, 25, 30];
+    },
+    reb: (avg) => {
+      if(avg===null) return [];
+      if(avg < 4) return [2, 4, 6, 8];
+      if(avg < 7) return [4, 6, 8, 10];
+      if(avg < 10) return [6, 8, 10, 12];
+      return [8, 10, 12, 14];
+    },
+    ast: (avg) => {
+      if(avg===null) return [];
+      if(avg < 3) return [2, 4, 6, 8];
+      if(avg < 5) return [3, 5, 7, 9];
+      if(avg < 8) return [5, 7, 9, 11];
+      return [7, 9, 11, 13];
+    }
+  };
+  const statLabel2 = {pts:'PTS', reb:'REB', ast:'AST'};
+
+  const playerFloorLocks = [];
+  for(const p of players){
+    if(!p.allGames || !p.allGames.length) continue;
+    let bestLock = null; // {stat, tier, streak}
+    for(const stat of ['pts','reb','ast']){
+      const tiers = floorTiersByStat[stat](p.stats[stat]);
+      if(!tiers.length) continue;
+      const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+      if(!vals.length) continue;
+      // For each tier, count streak from most recent backwards
+      for(const tier of tiers){
+        let streak = 0;
+        for(let i=vals.length-1; i>=0; i--){
+          if(vals[i] >= tier) streak++;
+          else break;
+        }
+        if(streak >= 10){
+          // Prefer higher tier at equal streak, then longer streak
+          if(!bestLock ||
+             tier > bestLock.tier ||
+             (tier === bestLock.tier && streak > bestLock.streak)){
+            bestLock = {stat, tier, streak, totalHits: vals.filter(v=>v>=tier).length, total: vals.length};
+          }
+        }
       }
-      if(gameBets.length < 2) continue;
-
-      const avgScore = Math.round(gameBets.reduce((a,b)=>a+b.score,0)/gameBets.length);
-      const legRows = gameBets.map(bet => {
-        const scoreColor = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
-        return `<div class="pl-row">
-          <div class="pl-left">
-            <div class="pl-name">${bet.p.name}</div>
-            <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · ${bet.hrAligned}% hit · cushion ${bet.dL10>0?'+':''}${bet.dL10.toFixed(1)}</div>
-          </div>
-          <div class="pl-right">
-            <span class="pl-line">${bet.line}</span>
-            <span class="pl-side ${bet.side}">${bet.side.toUpperCase()}</span>
-            <span class="pl-score" style="color:${scoreColor}">${bet.score}/100</span>
-          </div>
-        </div>`;
-      }).join('');
-
-      gameParlaySections.push(`<div class="game-parlay">
-        <div class="game-parlay-hdr">
-          <span class="game-parlay-matchup">${g.away} @ ${g.home}</span>
-          <span class="game-parlay-meta">${gameBets.length} legs · avg ${avgScore}/100 · ${g.time}</span>
-        </div>
-        <div class="game-parlay-legs">${legRows}</div>
-      </div>`);
     }
-
-    if(gameParlaySections.length) {
-      gameParlaysHtml = `<div class="bb-section-hdr">🏀 GAME PARLAYS</div>` + gameParlaySections.join('');
-    }
+    if(bestLock) playerFloorLocks.push({p, ...bestLock});
   }
 
-  // ── Full Slate Parlay — same rules as game parlays but across all games ──
-  let slateParlayHtml = '';
-  const slateLegs = parlayPool.filter(bet => bet.score >= 60);
-  if(slateLegs.length >= 2) {
-    const slateAvg = Math.round(slateLegs.reduce((a,b)=>a+b.score,0)/slateLegs.length);
-    const slateRows = slateLegs.map(bet => {
-      const scoreColor = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
-      return `<div class="pl-row">
-        <div class="pl-left">
-          <div class="pl-name">${bet.p.name}</div>
-          <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · ${bet.hrAligned}% hit · cushion ${bet.dL10>0?'+':''}${bet.dL10.toFixed(1)}</div>
-        </div>
-        <div class="pl-right">
-          <span class="pl-line">${bet.line}</span>
-          <span class="pl-side ${bet.side}">${bet.side.toUpperCase()}</span>
-          <span class="pl-score" style="color:${scoreColor}">${bet.score}/100</span>
-        </div>
-      </div>`;
-    }).join('');
+  // Rank: longest streak first, then highest tier
+  playerFloorLocks.sort((a,b)=>{
+    if(b.streak !== a.streak) return b.streak - a.streak;
+    return b.tier - a.tier;
+  });
 
-    slateParlayHtml = `<div class="top-parlay" style="border-color:rgba(20,184,166,0.5);background:linear-gradient(135deg,rgba(20,184,166,0.1),rgba(20,184,166,0.03))">
-      <div class="top-parlay-hdr" style="background:rgba(20,184,166,0.1);border-color:rgba(20,184,166,0.2)">
-        <span class="top-parlay-title" style="color:#2dd4bf">🌐 FULL SLATE PARLAY</span>
-        <span class="top-parlay-subtitle">${slateLegs.length} legs · avg ${slateAvg}/100</span>
+  // Render — top 10
+  const topFloorLocks = playerFloorLocks.slice(0, 10);
+  const floorLockRow = (item, i) => {
+    const rankCls = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    return `<div class="floor-lock-row">
+      <div class="floor-lock-rank ${rankCls}">${i+1}</div>
+      <div class="floor-lock-info">
+        <div class="floor-lock-name">${item.p.name}</div>
+        <div class="floor-lock-meta"><b>${item.p.team}</b> · ${item.p.pos} · ${item.p.game}</div>
       </div>
-      <div class="top-parlay-legs">${slateRows}</div>
+      <div class="floor-lock-stats">
+        <div class="floor-lock-tier">${item.tier}+ ${statLabel2[item.stat]}</div>
+        <div class="floor-lock-streak">🔒 ${item.streak} STRAIGHT</div>
+      </div>
     </div>`;
-  }
+  };
 
-  let html = lockHtml + parlayHtml + slateParlayHtml + megaHtml + gameParlaysHtml;
-  grid.innerHTML = html;
+  const floorLocksHtml = topFloorLocks.length
+    ? `<div class="bb-section-hdr">🏰 FLOOR LOCKS · ${topFloorLocks.length} OF ${playerFloorLocks.length}</div>` +
+      topFloorLocks.map((item,i)=>floorLockRow(item,i)).join('')
+    : '';
+
+  grid.innerHTML = lockHtml + p3Html + p5Html + p8Html + floorLocksHtml + othersHtml;
 }
 
 // ── AEST Clock ────────────────────────────────────────
-function tickClock() {
-  const now = new Date().toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false});
+function startClock(){
   const el = document.getElementById('aest-clock');
-  if(el) el.textContent = `🕐 ${now}`;
+  if(!el) return;
+  const tick = () => {
+    const now = new Date();
+    el.textContent = now.toLocaleTimeString('en-AU',{timeZone:'Australia/Sydney',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  };
+  tick(); setInterval(tick, 1000);
 }
-tickClock();
-setInterval(tickClock, 1000);
 
-// ── Auto-refresh lines every 30 minutes ──────────────
-const REFRESH_INTERVAL = 30 * 60 * 1000;
+// ── FAQ ───────────────────────────────────────────────
+const FAQ_HTML = `
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📊 CONFIDENCE SCORE (0–100)</div>
+    <p style="margin:0 0 6px">The Lock uses a <b>multiplicative geometric mean</b> system. Every signal is a factor 0–1 — a weak signal anywhere pulls the whole score down.</p>
+    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start">
+      <span style="color:var(--over);font-weight:700">× Hit Rate</span><span>Home or away split hit rate vs actual line. 70%=floor, 100%=1.0</span>
+      <span style="color:var(--over);font-weight:700">× Cushion</span><span>L10 avg vs line as % of line. 8%=gate, 40%+=1.0</span>
+      <span style="color:var(--over);font-weight:700">× Season</span><span>How strongly season avg agrees with L10 direction</span>
+      <span style="color:var(--over);font-weight:700">× Streak</span><span>Only sustained 4-5 game streaks get meaningful credit</span>
+      <span style="color:var(--warn);font-weight:700">× Context</span><span>Minutes trend, pace, def rank, FGA trend, opp hit rate, rest days</span>
+      <span style="color:var(--warn);font-weight:700">× Sample</span><span>15+ games=full weight. Fewer games = less credit</span>
+      <span style="color:var(--warn);font-weight:700">× Volatility</span><span>High variance players penalised (CV &gt;40%)</span>
+      <span style="color:var(--warn);font-weight:700">× Regression</span><span>Running &gt;25% above season avg = reduced score</span>
+    </div>
+    <p style="margin:6px 0 0;color:var(--muted);font-size:10px">Typical lock: 45–75. Perfect pick = 100.</p>
+  </div>
+  <div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">🚧 HARD GATES</div>
+    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
+      <div>✗ Hit rate &lt; 70% (aligned to pick direction)</div>
+      <div>✗ L10 and season avg disagree on direction</div>
+      <div>✗ Cushion &lt; 8% of line</div>
+      <div>✗ Opposing streak ≥ 2 games (Lock) or ≥ 3 (Parlays)</div>
+      <div>✗ Minutes trend below −4 (losing playing time)</div>
+      <div>✗ Point spread ≥ 12 (blowout/garbage time risk)</div>
+      <div>✗ Back-to-back game (Lock only — parlays penalised 15%)</div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📋 PARLAY SCORES ON CARDS</div>
+    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
+      <div><span style="color:var(--over);font-weight:700">72/100 ✓</span> — qualifies for parlays</div>
+      <div><span style="color:var(--muted);font-weight:700">48/100</span> — scored but below threshold</div>
+      <div><span style="color:var(--muted);font-style:italic">55% hit</span> — failed: hit rate below 70%</div>
+      <div><span style="color:var(--muted);font-style:italic">signals split</span> — L10 and season avg disagree</div>
+      <div><span style="color:var(--muted);font-style:italic">vol −8</span> — volatility penalty applied</div>
+      <div><span style="color:var(--muted);font-style:italic">n=6</span> — small sample size penalty</div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">⚠️ WHAT NEST CANNOT SEE</div>
+    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px;color:var(--muted)">
+      <div>• Injury status changes after load</div>
+      <div>• Minutes restrictions / load management</div>
+      <div>• Lineup changes on game night</div>
+      <div>• Line movement after load</div>
+    </div>
+    <p style="margin:6px 0 0;color:var(--muted);font-size:10px">Always check injury reports before placing bets. NEST is a statistical tool, not financial advice.</p>
+  </div>
+</div>`;
+
+function toggleFaq(){
+  const p = document.getElementById('faq-panel');
+  const o = document.getElementById('faq-overlay');
+  const body = document.getElementById('faq-body');
+  if(!p) return;
+  const isOpen = p.style.display === 'flex';
+  if(isOpen){
+    p.style.display = 'none';
+    if(o) o.style.display = 'none';
+  } else {
+    if(body && !body.innerHTML) body.innerHTML = FAQ_HTML;
+    p.style.display = 'flex';
+    if(o) o.style.display = 'block';
+  }
+}
+
+// ── Colour scheme picker ──────────────────────────────
+const SCHEMES = [
+  {name:'Deep Space',  vars:{bg:'#0a0c10',bg2:'#111318',bg3:'#1c1f2a',text:'#e8eaf0',muted:'#7a8099',border:'#1e2130',border2:'#2a2d3d',accent:'#3b82f6',over:'#22c55e',under:'#ef4444',warn:'#f59e0b'}},
+  {name:'Seafoam',     vars:{bg:'#071312',bg2:'#0d1f1e',bg3:'#152524',text:'#d4f0ee',muted:'#5a8886',border:'#1a2e2d',border2:'#243f3e',accent:'#14b8a6',over:'#34d399',under:'#f87171',warn:'#fbbf24'}},
+  {name:'Chrome',      vars:{bg:'#0f0f0f',bg2:'#1a1a1a',bg3:'#242424',text:'#e8e8e8',muted:'#888888',border:'#2a2a2a',border2:'#333333',accent:'#d1d5db',over:'#4ade80',under:'#f87171',warn:'#fbbf24'}},
+  {name:'Biohazard',   vars:{bg:'#080c08',bg2:'#0e160e',bg3:'#162016',text:'#c8f0c8',muted:'#5a8a5a',border:'#182818',border2:'#224022',accent:'#4ade80',over:'#86efac',under:'#f87171',warn:'#fde047'}},
+  {name:'Gold Rush',   vars:{bg:'#0c0a04',bg2:'#1a1506',bg3:'#251f08',text:'#f5e6b0',muted:'#a08040',border:'#2e2608',border2:'#3d330d',accent:'#f59e0b',over:'#fde047',under:'#f87171',warn:'#fb923c'}},
+  {name:'Neon Peach',  vars:{bg:'#0f080c',bg2:'#1c1018',bg3:'#271520',text:'#f5d0e0',muted:'#a06080',border:'#2e1824',border2:'#3d2030',accent:'#f472b6',over:'#34d399',under:'#f87171',warn:'#fbbf24'}},
+  {name:'Deep Crimson',vars:{bg:'#0c0808',bg2:'#1a0e0e',bg3:'#251414',text:'#f0d0d0',muted:'#a05050',border:'#2e1414',border2:'#3d1c1c',accent:'#ef4444',over:'#4ade80',under:'#fb923c',warn:'#fbbf24'}},
+  {name:'Supernova',   vars:{bg:'#0a0612',bg2:'#130e1e',bg3:'#1e1530',text:'#e8d8f8',muted:'#7860a8',border:'#1e163a',border2:'#2a1e4e',accent:'#a855f7',over:'#34d399',under:'#f87171',warn:'#fbbf24'}},
+  {name:'Ultraviolet', vars:{bg:'#060810',bg2:'#0c1020',bg3:'#121830',text:'#c8d8f8',muted:'#506088',border:'#141a30',border2:'#1c2440',accent:'#6366f1',over:'#34d399',under:'#f87171',warn:'#fbbf24'}},
+];
+
+let currentScheme = 0;
+
+function applyScheme(idx){
+  const s = SCHEMES[idx];
+  if(!s) return;
+  currentScheme = idx;
+  const r = document.documentElement.style;
+  for(const [k,v] of Object.entries(s.vars)) r.setProperty('--'+k, v);
+  localStorage.setItem('nest_scheme', idx);
+  // Update button label
+  const btn = document.getElementById('scheme-btn');
+  if(btn) btn.textContent = '🎨 '+s.name;
+}
+
+function initScheme(){
+  const saved = parseInt(localStorage.getItem('nest_scheme')||'0');
+  applyScheme(isNaN(saved)?0:Math.min(saved, SCHEMES.length-1));
+  const grid = document.getElementById('scheme-grid');
+  if(!grid) return;
+  grid.innerHTML = SCHEMES.map((s,i)=>`<button onclick="applyScheme(${i});toggleSchemePicker()" style="padding:8px 6px;border-radius:7px;border:2px solid ${i===currentScheme?'var(--accent)':'transparent'};background:${s.vars.bg2};cursor:pointer;text-align:center;transition:all .2s" id="scheme-opt-${i}">
+    <div style="display:flex;gap:3px;justify-content:center;margin-bottom:4px">
+      <div style="width:10px;height:10px;border-radius:50%;background:${s.vars.accent}"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:${s.vars.over}"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:${s.vars.under}"></div>
+    </div>
+    <div style="font-size:10px;font-weight:700;color:${s.vars.text};letter-spacing:.5px;font-family:'Barlow Condensed',sans-serif">${s.name}</div>
+  </button>`).join('');
+}
+
+function toggleSchemePicker(){
+  const p = document.getElementById('scheme-panel');
+  const o = document.getElementById('scheme-overlay');
+  if(!p) return;
+  const open = p.style.display==='flex';
+  p.style.display = open ? 'none' : 'flex';
+  if(o) o.style.display = open ? 'none' : 'block';
+}
+
+// ── Auto-refresh lines every 30 mins ─────────────────
 let refreshTimer = null;
 let lastRefresh = null;
+const AUTO_REFRESH_MS = 30 * 60 * 1000;
 
-function refreshLines() {
+function updateRefreshBadge(){
   const badge = document.getElementById('refresh-badge');
-  if(!badge) return;
-  // Animate to spinning amber state
-  badge.innerHTML = '<span class="spinning">↻</span> WORKING';
-  badge.className = 'badge gw';
-  badge.style.pointerEvents = 'none';
-  // Clear ALL lines including manual — reset everything to DraftKings
+  if(!badge || !lastRefresh) return;
+  const mins = Math.round((Date.now() - lastRefresh) / 60000);
+  badge.textContent = mins < 1 ? '↻ LIVE' : `↻ ${mins}m ago`;
+  badge.className = mins >= 25 ? 'badge gw' : 'badge gm';
+}
+
+function refreshLines(){
+  const badge = document.getElementById('refresh-badge');
+  if(badge){ badge.innerHTML='<span class="spinning">↻</span> WORKING'; badge.className='badge gw'; badge.style.pointerEvents='none'; }
   PROP_LINES = {};
   Object.values(PLAYERS).forEach(p => {
-    p.lines = {pts:'',reb:'',ast:''};
-    p.lineSource = null;
+    if(p.lineSource !== 'Manual'){ p.lines={pts:'',reb:'',ast:''}; p.lineSource=null; }
   });
-  // Also clear localStorage manual overrides
-  try { localStorage.removeItem('nest_lines'); } catch(e) {}
   fetchAllProps().then(() => {
     lastRefresh = new Date();
-    badge.innerHTML = '✓ LINES UPDATED';
-    badge.className = 'badge gg';
-    badge.style.pointerEvents = 'auto';
-    setTimeout(() => {
-      updateRefreshBadge();
-      badge.className = 'badge gm';
-      badge.style.pointerEvents = 'auto';
-    }, 1500);
+    if(badge){ badge.innerHTML='✓ UPDATED'; badge.className='badge gg'; badge.style.pointerEvents='auto';
+      setTimeout(()=>{ updateRefreshBadge(); badge.className='badge gm'; }, 1500); }
   });
   showToast('Refreshing lines...');
 }
 
-function scheduleRefresh() {
+function scheduleRefresh(){
   if(refreshTimer) clearInterval(refreshTimer);
   refreshTimer = setInterval(async () => {
-    // Only refresh lines — don't re-fetch all game logs
     PROP_LINES = {};
-    Object.values(PLAYERS).forEach(p => {
-      // Only clear auto-filled lines, keep manual ones
-      if(p.lineSource !== 'Manual') {
-        p.lines = {pts:'',reb:'',ast:''};
-        p.lineSource = null;
-      }
-    });
     await fetchAllProps();
     lastRefresh = new Date();
     updateRefreshBadge();
-  }, REFRESH_INTERVAL);
+  }, AUTO_REFRESH_MS);
+  setInterval(updateRefreshBadge, 60000);
 }
-
-function updateRefreshBadge() {
-  if(!lastRefresh) return;
-  const mins = Math.round((Date.now()-lastRefresh)/60000);
-  const el = document.getElementById('refresh-badge');
-  if(el) el.textContent = `↻ ${mins}m ago`;
-}
-
-// Tick the refresh badge every minute
-setInterval(updateRefreshBadge, 60000);
 
 // ── Day navigation ────────────────────────────────────
-async function changeDay(delta) {
-  if(dayOffset + delta < 0) return; // don't go to past
+function changeDay(delta){
   dayOffset += delta;
-
-  // Reset everything for the new day
-  GAMES = []; PLAYERS = {}; PROP_LINES = {};
-  activeGame = 'all';
-
-  // Reset UI
-  document.getElementById('pgrid').innerHTML='<div class="empty"><div class="ebig">NEST</div><p>Loading games...</p></div>';
-  document.getElementById('pbar').style.display='block';
-  document.getElementById('pbar-fill').style.width='2%';
-  document.getElementById('status-badge').textContent='LOADING...';
-  document.getElementById('status-badge').className='badge gg';
+  GAMES=[]; PLAYERS={}; PROP_LINES={}; SUMMARY_CACHE={};
+  document.getElementById('pgrid').innerHTML='';
+  document.getElementById('bb-grid').innerHTML='<div class="bb-empty">Loading...</div>';
   document.getElementById('lines-badge').textContent='LINES...';
   document.getElementById('lines-badge').className='badge gm';
-  document.getElementById('bb-grid').innerHTML='<div class="bb-empty">Loading...</div>';
-
-  await loadAll();
+  if(refreshTimer) clearInterval(refreshTimer);
+  loadAll().then(()=>scheduleRefresh());
 }
 
-// ── Colour Scheme Picker ──────────────────────────────
-const SCHEMES = [
-  {id:1,name:'Deep Space',tag:'Classic',bg:'#0a0c10',bg2:'#111318',bg3:'#1c1f2a',accent:'#3b82f6',over:'#22c55e',under:'#ef4444',muted:'#7a8099',text:'#e8eaf0'},
-  {id:48,name:'Seafoam',tag:'Cool',bg:'#00080a',bg2:'#001014',bg3:'#00181e',accent:'#44ffdd',over:'#88ff66',under:'#ff6688',muted:'#1a5a5a',text:'#e0fffa'},
-  {id:51,name:'Chrome',tag:'Pro',bg:'#040404',bg2:'#0c0c0c',bg3:'#181818',accent:'#aaccff',over:'#44ff88',under:'#ff4466',muted:'#445566',text:'#eef4ff'},
-  {id:44,name:'Biohazard',tag:'Vivid',bg:'#040a00',bg2:'#081400',bg3:'#0d1e00',accent:'#aaff00',over:'#00ffcc',under:'#ff2200',muted:'#3a5500',text:'#f0ffe0'},
-  {id:18,name:'Gold Rush',tag:'Luxury',bg:'#0a0800',bg2:'#151000',bg3:'#1f1800',accent:'#ffd700',over:'#4ade80',under:'#ff6b6b',muted:'#7a6a20',text:'#fffbe0'},
-  {id:49,name:'Neon Peach',tag:'Vivid',bg:'#0d0600',bg2:'#1a0c00',bg3:'#261200',accent:'#ffaa66',over:'#66ff99',under:'#ff3366',muted:'#7a4a33',text:'#fff4e8'},
-  {id:39,name:'Deep Crimson',tag:'Bold',bg:'#0d0000',bg2:'#180000',bg3:'#240000',accent:'#ff4466',over:'#44ffaa',under:'#ff8800',muted:'#6a2233',text:'#fff0f3'},
-  {id:32,name:'Supernova',tag:'Vivid',bg:'#08000d',bg2:'#12001a',bg3:'#1c0026',accent:'#ff2eff',over:'#2effa8',under:'#ff2e2e',muted:'#6a1a7a',text:'#ffe0ff'},
-  {id:23,name:'Ultraviolet',tag:'Electric',bg:'#05000f',bg2:'#0a001e',bg3:'#0f002e',accent:'#9d00ff',over:'#00ff88',under:'#ff0055',muted:'#4a1a8a',text:'#f0e0ff'},
-];
-
-let schemePickerOpen = false;
-let activeSchemeTag = 'All';
-
-function toggleSchemePicker() {
-  schemePickerOpen = !schemePickerOpen;
-  const panel = document.getElementById('scheme-panel');
-  const overlay = document.getElementById('scheme-overlay');
-  panel.style.display = schemePickerOpen ? 'flex' : 'none';
-  overlay.style.display = schemePickerOpen ? 'block' : 'none';
-  if(schemePickerOpen) renderSchemePicker();
-}
-
-function renderSchemePicker() {
-  renderSchemeGrid();
-}
-
-function setSchemeTag(tag) {
-  activeSchemeTag = tag;
-  renderSchemePicker();
-}
-
-function renderSchemeGrid() {
-  const filtered = activeSchemeTag==='All' ? SCHEMES : SCHEMES.filter(s=>s.tag===activeSchemeTag);
-  document.getElementById('scheme-grid').innerHTML = filtered.map(s => `
-    <div onclick="applyScheme(${s.id})" title="${s.name}" style="border-radius:6px;overflow:hidden;cursor:pointer;border:1.5px solid ${s.bg3};transition:border-color .12s" onmouseover="this.style.borderColor='${s.accent}'" onmouseout="this.style.borderColor='${s.bg3}'">
-      <div style="background:${s.bg};padding:5px 6px">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#fff;line-height:1.1">${s.name}</div>
-        <div style="display:flex;gap:2px;margin-top:4px">
-          <div style="width:9px;height:9px;border-radius:50%;background:${s.accent}"></div>
-          <div style="width:9px;height:9px;border-radius:50%;background:${s.over}"></div>
-          <div style="width:9px;height:9px;border-radius:50%;background:${s.under}"></div>
-        </div>
-      </div>
-      <div style="background:${s.accent};padding:3px 4px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:${s.bg};letter-spacing:.5px;text-align:center">APPLY</div>
-    </div>
-  `).join('');
-}
-
-function applyScheme(id) {
-  const s = SCHEMES.find(x=>x.id===id);
-  if(!s) return;
-  const r = document.documentElement.style;
-  r.setProperty('--bg', s.bg);
-  r.setProperty('--bg2', s.bg2);
-  r.setProperty('--bg3', s.bg3);
-  r.setProperty('--accent', s.accent);
-  r.setProperty('--accent2', s.accent);
-  r.setProperty('--over', s.over);
-  r.setProperty('--under', s.under);
-  r.setProperty('--muted', s.muted);
-  r.setProperty('--text', s.text);
-  r.setProperty('--border', s.accent.replace('#','') === 'ffffff' ? 'rgba(255,255,255,0.1)' : `${s.accent}1a`);
-  r.setProperty('--border2', `${s.accent}2e`);
-  document.body.style.background = s.bg;
-  document.body.style.color = s.text;
-  // Save to localStorage
-  try { localStorage.setItem('nest_scheme', JSON.stringify(s)); } catch(e){}
-  if(schemePickerOpen) toggleSchemePicker();
-  showToast(`✓ ${s.name} applied`);
-}
-
-// Restore saved scheme on load
-try {
-  const saved = JSON.parse(localStorage.getItem('nest_scheme')||'null');
-  if(saved) applyScheme(saved.id);
-} catch(e){}
-
-// ── FAQ ───────────────────────────────────────────────
-let faqOpen = false;
-function toggleFaq() {
-  faqOpen = !faqOpen;
-  const panel = document.getElementById('faq-panel');
-  const overlay = document.getElementById('faq-overlay');
-  panel.style.display = faqOpen ? 'flex' : 'none';
-  overlay.style.display = faqOpen ? 'block' : 'none';
-  if(faqOpen) document.getElementById('faq-body').innerHTML = FAQ_HTML;
-}
-
-const FAQ_HTML = `
-<div style="display:flex;flex-direction:column;gap:14px">
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--warn);margin-bottom:5px">🔒 TOP LOCK OF THE DAY</div>
-    <p style="margin:0 0 5px">The single highest-confidence pick across the entire slate. To qualify a pick must pass <b>all four</b> of these gates:</p>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:4px">
-      <div><span style="color:var(--accent);font-weight:700">① Hit Rate ≥ 70%</span> — the player exceeded this line in at least 7 of their last 10 games.</div>
-      <div><span style="color:var(--accent);font-weight:700">② Both signals agree</span> — L10 average AND season average must both be on the same side of the line. If they conflict, the pick is cut.</div>
-      <div><span style="color:var(--accent);font-weight:700">③ No opposing streak ≥ 2</span> — if the player has gone against your pick 2+ games in a row, it's excluded.</div>
-      <div><span style="color:var(--accent);font-weight:700">④ Min score 50/100</span> — must reach a combined confidence score of at least 50.</div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📊 CONFIDENCE SCORE (0–100)</div>
-    <p style="margin:0 0 6px">Every pick is scored across five weighted signals. The lock uses a strict scorer; parlays use the parlay scorer (see below).</p>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px">
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:start">
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">0–35 pts</span><span><b>Hit Rate</b> — scaled from 70–100%. A 100% hit rate scores the full 35.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">0–40 pts</span><span><b>L10 Diff vs Line</b> — how far the L10 avg is from the line, capped at 8pts. The strongest signal.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">0–15 pts</span><span><b>Season Diff</b> — bonus when the season avg also clears the line comfortably.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">-15–15 pts</span><span><b>Streak</b> — bonus for active streak in pick direction. Opposing streak = penalty.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">0–5 pts</span><span><b>Minutes Trend</b> — small bonus if player is getting more run in last 5 games vs last 10.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">-3–5 pts</span><span><b>Game Total (Pace)</b> — high O/U (230+) means fast pace = more scoring chances. Low O/U (≤210) = slight penalty.</span>
-        <span style="color:var(--over);font-weight:700;white-space:nowrap">-5–8 pts</span><span><b>Opp Defensive Rank</b> — facing a weak defence (#22–30) adds up to 8pts for over picks. Facing a top-10 defence deducts 5pts.</span>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📋 PARLAY SCORE ON CARDS</div>
-    <p style="margin:0 0 5px">Each player card shows a <b>PTS / REB / AST SCORE</b> row. This tells you exactly whether that stat qualifies for any parlay and why:</p>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
-      <div><span style="color:var(--over);font-weight:700">72/100 ✓</span> — qualifies. Will appear in parlays.</div>
-      <div><span style="color:var(--muted);font-weight:700">58/100</span> — scored but below 70 threshold.</div>
-      <div><span style="color:var(--muted);font-style:italic">65% hit</span> — failed: hit rate below 70%.</div>
-      <div><span style="color:var(--muted);font-style:italic">signals split</span> — failed: L10 and season avg point different directions.</div>
-      <div><span style="color:var(--muted);font-style:italic">1.8pt gap</span> — failed: cushion below 2.5pt minimum.</div>
-      <div><span style="color:var(--muted);font-style:italic">low score</span> — passed all three hard rules (70%+ hit rate, signals agree, 2.5pt cushion) but the final score came in under 50. Usually means the numbers are borderline — e.g. hit rate is exactly 70%, cushion is barely 2.6pts, no active streak, flat minutes. Everything technically qualifies but nothing is strong enough to push the score up.</div>
-      <div><span style="color:var(--muted);font-style:italic">no line</span> — DraftKings line not yet loaded.</div>
-      <div><span style="color:var(--muted);font-style:italic">no data</span> — not enough game log data to calculate hit rate or L10 average yet.</div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">🎯 TOP PARLAY OF THE DAY</div>
-    <p style="margin:0 0 5px">The 3 highest-scoring legs from the entire slate. Uses the parlay scorer with these hard rules:</p>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
-      <div>• Hit rate ≥ 70% vs actual line</div>
-      <div>• Both L10 avg and season avg agree on side</div>
-      <div>• <span style="color:var(--warn);font-weight:700">Cushion ≥ 2.5 pts</span> — L10 avg must beat line by 2.5+ pts margin</div>
-      <div>• No opposing streak of 3+</div>
-      <div>• Score ≥ 40 after all signals</div>
-    </div>
-    <p style="margin:6px 0 0;color:var(--muted)">Same player can appear twice if two of their stats both qualify. Cushion is shown on each leg.</p>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:#2dd4bf;margin-bottom:5px">🌐 FULL SLATE PARLAY</div>
-    <p style="margin:0 0 5px">Every qualifying leg from every game on the slate in one parlay — same strict rules as the Top Parlay and Game Parlays (50+ score, 70%+ hit rate, both signals agree, 2.5pt cushion). This is the most legs you can put together while still meeting all quality filters.</p>
-    <p style="margin:0;color:var(--muted)">More legs = higher payout but lower overall hit probability. Use the Full Slate as a reference for which picks NEST is most confident in across the whole day.</p>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--text);margin-bottom:5px">🏀 GAME PARLAYS</div>
-    <p style="margin:0 0 5px">One parlay per game using only players from that matchup. Same strict rules as Top Parlay. Only games with ≥ 2 qualifying legs appear. No cap on legs — if 7 picks qualify from one game, all 7 show.</p>
-    <p style="margin:0;color:var(--muted)">Fewer legs = higher hit probability. A 2-leg same-game parlay is much safer than a 10-leg cross-slate parlay.</p>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:#c084fc;margin-bottom:5px">🚀 MEGA PARLAY</div>
-    <p style="margin:0 0 5px">The top 10 legs from the full parlay pool — <b>high risk, high reward.</b> Uses the same parlay scorer but takes the top 10 regardless of game. Same player can appear multiple times.</p>
-    <p style="margin:0;color:var(--muted)">Treat this as a fun long-shot, not a primary strategy. A 10-leg parlay requires all 10 to hit.</p>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📈 PLAYER CARD — KEY STATS</div>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
-      <div><b>SZN AVG</b> — full season average for PTS / REB / AST.</div>
-      <div><b>L10 AVG</b> — average over the last 10 qualifying games (≥10 min played).</div>
-      <div><b>HIT% vs LINE</b> — how often the player beat this exact line in last 10 games. Shows vs AVG if no line is loaded yet.</div>
-      <div><b>STREAK</b> — consecutive games going over/under their season avg. 🔥 = over streak, ❄️ = under streak. Uses full 20-game window.</div>
-      <div><b>VENUE</b> — 🏠 HOME or ✈️ AWAY for today's game.</div>
-      <div><b>MIN TREND</b> — L5 avg minutes minus L10 avg minutes. ▲ = getting more run recently.</div>
-      <div><b>GAME O/U</b> — the over/under total for the game. 🟢 230+ = fast pace (good for overs), 🔴 ≤210 = slow pace.</div>
-      <div><b>OPP DEF</b> — opponent's defensive rank by points allowed this season. 🟢 #22–30 = weak defence (easier to score on), 🔴 #1–10 = elite defence.</div>
-      <div><b>HIGH / LOW</b> — season high and low from the last 20 qualifying games.</div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">📋 LAST 5 GAMES LOG</div>
-    <p style="margin:0">Tap the <b>📋 Last 10 Games</b> row on any player card to expand their recent scores. <span style="color:var(--over)">Green</span> = beat the line, <span style="color:var(--under)">Red</span> = missed, White = no line to compare.</p>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:5px">🎨 THEME & ↻ LIVE</div>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px">
-      <div><b>🎨 THEME</b> — switch between 9 colour schemes. Your choice is saved and restores on next open.</div>
-      <div><b>↻ LIVE</b> — manually refreshes DraftKings lines from ESPN. Lines also auto-refresh every 30 minutes. Manual line overrides are preserved.</div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-bottom:5px">⚠️ WHAT NEST CANNOT SEE</div>
-    <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;color:var(--muted);display:flex;flex-direction:column;gap:3px">
-      <div>• Same-day injury news or late scratches</div>
-      <div>• Coaching rotation changes or load management</div>
-      <div>• Opponent defensive matchup quality</div>
-      <div>• Blowout / garbage time risk</div>
-      <div>• Line movement after initial post</div>
-    </div>
-    <p style="margin:6px 0 0;color:var(--muted)">Always check injury reports before placing bets. NEST is a data tool, not a guarantee.</p>
-  </div>
-
-</div>
-`;
-
+// ── Boot ─────────────────────────────────────────────
+initScheme();
+startClock();
 loadAll().then(() => {
-  scheduleRefresh();
   lastRefresh = new Date();
-  updateRefreshBadge();
+  scheduleRefresh();
 });
 </script>
 </body>
