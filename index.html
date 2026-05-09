@@ -88,6 +88,66 @@ select option{background:#1a1d26}
 .floor-lock-stats{text-align:right;flex-shrink:0}
 .floor-lock-tier{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--over);letter-spacing:.5px;line-height:1}
 .floor-lock-streak{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:var(--over);letter-spacing:.5px;margin-top:2px;opacity:0.85}
+.vault-parlay{margin-bottom:10px;border-radius:8px;border:1px solid;background:var(--bg2);overflow:hidden}
+.vault-parlay-hdr{padding:7px 10px;border-bottom:1px solid;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.vault-parlay-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px}
+.vault-parlay-sub{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.vault-parlay-legs{padding:6px 8px}
+.vault-leg{display:flex;align-items:center;gap:8px;padding:6px 8px;border-bottom:1px solid var(--border)}
+.vault-leg:last-child{border-bottom:none}
+.vault-leg-info{flex:1;min-width:0}
+.vault-leg-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--text);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vault-leg-meta{font-size:9px;color:var(--muted);font-weight:400;letter-spacing:.3px;margin-top:1px}
+.vault-leg-meta b{color:var(--accent);font-weight:700}
+.vault-leg-bet{text-align:right;flex-shrink:0}
+.vault-leg-tier{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--over);letter-spacing:.5px;line-height:1}
+.vault-leg-streak{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:var(--over);letter-spacing:.5px;margin-top:2px;opacity:0.85}
+.vault-warns{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
+.vault-warn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:.5px;padding:1px 5px;border-radius:3px;border:1px solid;background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:#f59e0b;cursor:help}
+.vault-warn-blowout,.vault-warn-mins{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#ef4444}
+.vault-warn-b2b,.vault-warn-def{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:#f59e0b}
+.vault-leg-stab{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:.5px;margin-top:3px;cursor:help;opacity:0.9}
+.vault-stab-solid{color:#22c55e}
+.vault-stab-ok{color:#86efac}
+.vault-stab-thin{color:#f59e0b}
+.vault-stab-fragile{color:#ef4444}
+.vault-leg-fragile .vault-leg-tier{color:#f59e0b}
+.vault-leg-fragile{background:rgba(239,68,68,0.03)}
+/* EDGE system styles */
+.edge-toggle{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.5px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);cursor:pointer;transition:all .2s}
+.edge-toggle:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.edge-empty{padding:12px;background:var(--bg3);border-radius:6px;font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px}
+.edge-top{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(59,130,246,0.03));border:2px solid rgba(59,130,246,0.55);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.edge-top-hdr{background:rgba(59,130,246,0.12);padding:7px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(59,130,246,0.25)}
+.edge-top-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent)}
+.edge-top-score{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700}
+.edge-top-body{padding:10px 12px 8px}
+.edge-top-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--text);letter-spacing:.5px}
+.edge-top-meta{font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.3px;margin-top:2px}
+.edge-top-meta b{color:var(--accent);font-weight:700}
+.edge-top-pick{display:flex;align-items:center;gap:8px;margin:8px 0 6px}
+.edge-top-stat{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted)}
+.edge-top-line{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:.5px}
+.edge-top-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.edge-pill{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.5px;padding:2px 7px;border-radius:4px;border:1px solid}
+.edge-parlay{margin-bottom:10px;border-radius:8px;border:1px solid;background:var(--bg2);overflow:hidden}
+.edge-parlay-hdr{padding:7px 10px;border-bottom:1px solid;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.edge-parlay-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px}
+.edge-parlay-sub{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.edge-parlay-legs{padding:6px 8px}
+.edge-leg{display:flex;align-items:center;gap:8px;padding:6px 8px;border-bottom:1px solid var(--border)}
+.edge-leg:last-child{border-bottom:none}
+.edge-leg-info{flex:1;min-width:0}
+.edge-leg-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--text);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.edge-leg-meta{font-size:9px;color:var(--muted);font-weight:400;letter-spacing:.3px;margin-top:1px}
+.edge-leg-meta b{color:var(--accent);font-weight:700}
+.edge-leg-bet{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:var(--text);letter-spacing:.3px;margin-top:2px}
+.edge-leg-stats{text-align:right;flex-shrink:0}
+.edge-leg-z{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;line-height:1}
+.edge-leg-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.5px;margin-top:2px}
+.edge-leg-floor{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.3px;margin-top:2px}
+.parlay-copy-btn{font-size:11px;padding:2px 6px;border-radius:4px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;transition:all .2s;line-height:1}
+.parlay-copy-btn:hover{background:var(--accent);border-color:var(--accent);transform:scale(1.1)}
 .hl-cell{background:var(--bg3);border-radius:4px;padding:5px 4px;text-align:center}
 .hl-stat{font-size:9px;color:var(--muted);font-weight:700;display:block;margin-bottom:2px}
 .hl-hi{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--over);display:block;line-height:1}
@@ -427,6 +487,7 @@ let GAMES=[], PLAYERS={}, filt='all', activeGame='all';
 let dayOffset = 0; // 0=today, 1=tomorrow, -1=yesterday
 let PROP_LINES = {};
 let SUMMARY_CACHE = {}; // event_id → {date, teams} — shared across all fetchHL calls
+let EDGE_STRICT = true; // EDGE system: true = 20+ games required, false = 15+ games allowed
 
 async function get(url) {
   const r = await fetch(url.replace('http://','https://'));
@@ -685,6 +746,7 @@ async function fetchRoster(teamId, teamAbbr, gameTag, isHome, gameTotal, homeSpr
       lines:{pts:'',reb:'',ast:''}, lineSource:null, hlLoaded:false,
       l10:{pts:null,reb:null,ast:null},
       hitRate:{pts:null,reb:null,ast:null},
+      l10HitRate:{pts:null,reb:null,ast:null},
       homeHitRate:{pts:null,reb:null,ast:null},
       awayHitRate:{pts:null,reb:null,ast:null},
       oppHitRate:{pts:null,reb:null,ast:null},
@@ -1281,7 +1343,7 @@ function cardHTML(p) {
   // Same caps for reb/ast — the user's tiering is for points, but reb/ast use smaller round numbers
   const floorTiersReb = (avg) => {
     if(avg === null) return [];
-    if(avg < 4) return [2, 4, 6, 8];
+    if(avg < 4) return [4, 6, 8];
     if(avg < 7) return [4, 6, 8, 10];
     if(avg < 10) return [6, 8, 10, 12];
     return [8, 10, 12, 14];
@@ -1289,9 +1351,9 @@ function cardHTML(p) {
   const floorTiersAst = (avg) => {
     if(avg === null) return [];
     if(avg < 3) return [2, 4, 6, 8];
-    if(avg < 5) return [3, 5, 7, 9];
-    if(avg < 8) return [5, 7, 9, 11];
-    return [7, 9, 11, 13];
+    if(avg < 5) return [4, 6, 8, 10];
+    if(avg < 8) return [6, 8, 10, 12];
+    return [8, 10, 12];
   };
 
   const computeFloorAlt = (stat, tiers) => {
@@ -1427,13 +1489,15 @@ function cardHTML(p) {
     <div class="scell"><div class="slabel">OPP DEF</div><div class="sval" style="font-size:14px;color:${drColor}">${drIcon}${drTxt}</div></div>
   </div>`;
 
-  // Hit rate cells
+  // Hit rate cells — show L10 hit rate when line exists, full sample otherwise
   const hrCell = (stat) => {
-    const hr = p.hitRate[stat];
-    if(hr===null) return `<div class="trend-cell"><div class="trend-label">${stat.toUpperCase()} HIT%</div><div class="trend-val neu">–</div></div>`;
-    const cls = hr>=60?'hot':hr<=40?'cold':'neu';
     const hasLine = getLine(p,stat)!==null;
-    const lbl = hasLine ? `${stat.toUpperCase()} HIT% vs LINE` : `${stat.toUpperCase()} HIT% vs AVG`;
+    const hr = hasLine && p.l10HitRate?.[stat] !== null && p.l10HitRate?.[stat] !== undefined
+      ? p.l10HitRate[stat]
+      : p.hitRate[stat];
+    if(hr===null || hr===undefined) return `<div class="trend-cell"><div class="trend-label">${stat.toUpperCase()} HIT%</div><div class="trend-val neu">–</div></div>`;
+    const cls = hr>=60?'hot':hr<=40?'cold':'neu';
+    const lbl = hasLine ? `${stat.toUpperCase()} L10 vs LINE` : `${stat.toUpperCase()} HIT% vs AVG`;
     return `<div class="trend-cell"><div class="trend-label">${lbl}</div><div class="trend-val ${cls}">${hr}%</div></div>`;
   };
 
@@ -1492,7 +1556,7 @@ function hasFloorLock(p) {
     },
     reb: (avg) => {
       if(avg===null) return [];
-      if(avg < 4) return [2, 4, 6, 8];
+      if(avg < 4) return [4, 6, 8];
       if(avg < 7) return [4, 6, 8, 10];
       if(avg < 10) return [6, 8, 10, 12];
       return [8, 10, 12, 14];
@@ -1500,9 +1564,9 @@ function hasFloorLock(p) {
     ast: (avg) => {
       if(avg===null) return [];
       if(avg < 3) return [2, 4, 6, 8];
-      if(avg < 5) return [3, 5, 7, 9];
-      if(avg < 8) return [5, 7, 9, 11];
-      return [7, 9, 11, 13];
+      if(avg < 5) return [4, 6, 8, 10];
+      if(avg < 8) return [6, 8, 10, 12];
+      return [8, 10, 12];
     }
   };
   for(const stat of ['pts','reb','ast']){
@@ -1786,11 +1850,33 @@ function recalcHitRates() {
       if(!vals.length) return null;
       return Math.round((vals.filter(v=>v>line).length / vals.length)*100);
     };
+    // Recalc streak against the actual line (not season avg) so the displayed
+    // streak matches what the user is betting on
+    const streakVsLine = (gameSet, stat, line) => {
+      const vals = gameSet.map(g=>g[stat]).filter(v=>v!==null);
+      if(!vals.length) return 0;
+      const last = vals[vals.length-1];
+      // Tied with line counts as neither over nor under — break streak
+      if(last === line) return 0;
+      const dir = last > line ? 1 : -1;
+      let count = 0;
+      for(let i=vals.length-1; i>=0; i--){
+        if(vals[i] === line) break; // tie breaks streak
+        if((vals[i] > line) === (dir === 1)) count++;
+        else break;
+      }
+      return dir * count;
+    };
     for (const stat of ['pts','reb','ast']) {
       const line = getLine(p, stat);
       if (line === null) continue;
       // Overall hit rate vs actual line (all games)
       p.hitRate[stat] = hitVsLine(src, stat, line);
+      // True L10 hit rate — last 10 games only
+      const l10src = src.slice(-10);
+      if(p.l10HitRate) p.l10HitRate[stat] = hitVsLine(l10src, stat, line);
+      // Streak vs actual line (overrides season-avg streak from fetchHL)
+      p.streak[stat] = streakVsLine(src, stat, line);
       // Home/away splits vs actual line
       const homeG = src.filter(g=>g.wasHome===true);
       const awayG = src.filter(g=>g.wasHome===false);
@@ -2091,15 +2177,35 @@ function renderBestBets() {
 
   // ── Pills builder ────────────────────────────────────
   const makePills = (bet) => {
-    const {hrAligned, streakAligned, dL10, dSzn, mt, side, p} = bet;
+    const {hrAligned, streakAligned, dL10, dSzn, mt, side, p, stat} = bet;
     const pills = [];
-    pills.push(`<span class="bb-pill green">L10 Hit ${hrAligned}%</span>`);
+    // L10 hit rate (true last 10) — aligned to bet side
+    const l10hr = p.l10HitRate?.[stat];
+    if(l10hr !== null && l10hr !== undefined){
+      const l10aligned = side==='over' ? l10hr : 100-l10hr;
+      pills.push(`<span class="bb-pill green">L10 ${l10aligned}%</span>`);
+    }
+    // Full-window hit rate from p.hitRate (NOT bet.hrAligned which uses home/away split)
+    const totalGames = p.allGames?.length || 0;
+    const fullHR = p.hitRate?.[stat];
+    if(fullHR !== null && fullHR !== undefined && totalGames > 0){
+      const fullAligned = side==='over' ? fullHR : 100-fullHR;
+      pills.push(`<span class="bb-pill green">L${totalGames} ${fullAligned}%</span>`);
+    }
+    // Show home/away split separately so it's clear what's what
+    const splitHR = p.isHome
+      ? (p.homeHitRate?.[stat] != null ? p.homeHitRate[stat] : null)
+      : (p.awayHitRate?.[stat] != null ? p.awayHitRate[stat] : null);
+    if(splitHR !== null){
+      const splitAligned = side==='over' ? splitHR : 100-splitHR;
+      const splitLabel = p.isHome ? '🏠 Home' : '✈️ Away';
+      pills.push(`<span class="bb-pill blue">${splitLabel} ${splitAligned}%</span>`);
+    }
     if(streakAligned>0) pills.push(`<span class="bb-pill green">🔥 ${streakAligned}-game streak</span>`);
     const dL10fmt=`${dL10>0?'+':''}${dL10.toFixed(1)}`;
     pills.push(`<span class="bb-pill ${Math.abs(dL10)>=3?'green':'blue'}">L10 ${dL10fmt}</span>`);
     if(dSzn!==null){const ds=`${dSzn>0?'+':''}${dSzn.toFixed(1)}`;pills.push(`<span class="bb-pill blue">SZN ${ds}</span>`);}
     if(mt!==null&&mt>0) pills.push(`<span class="bb-pill green">▲ +${mt}m</span>`);
-    if(p.isHome!==null) pills.push(`<span class="bb-pill ${p.isHome?'green':'blue'}">${p.isHome?'🏠':'✈️'}</span>`);
     if(p.gameTotal!==null) {
       const pc=p.gameTotal>=230?'green':p.gameTotal<=210?'red':'blue';
       pills.push(`<span class="bb-pill ${pc}">O/U ${p.gameTotal}</span>`);
@@ -2146,18 +2252,23 @@ function renderBestBets() {
   // Helper: build N best legs from pool (unrestricted — same player/stat allowed)
   const buildParlay = (n) => parlayPool.slice(0, n);
 
-  const parlay3  = buildParlay(3);
-  const parlay5  = buildParlay(5);
-  const parlay8  = buildParlay(8);
+  const parlay8 = buildParlay(8);
 
   // ── Parlay row renderer ──────────────────────────────
   const parlayRow = (bet) => {
     const scoreColor = bet.score>=75?'var(--over)':bet.score>=60?'var(--warn)':'var(--muted)';
     const cushion = `${bet.dL10>0?'+':''}${bet.dL10.toFixed(1)}`;
+    // Use true L10 hit rate aligned to bet side (not bet.hrAligned which is home/away split)
+    const l10hr = bet.p.l10HitRate?.[bet.stat];
+    let hitDisplay = '–';
+    if(l10hr !== null && l10hr !== undefined){
+      const aligned = bet.side==='over' ? l10hr : 100-l10hr;
+      hitDisplay = `${aligned}%`;
+    }
     return `<div class="pl-row">
       <div class="pl-left">
         <div class="pl-name">${bet.p.name}</div>
-        <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · ${bet.hrAligned}% hit · cushion ${cushion}</div>
+        <div class="pl-pick"><b>${bet.p.team}</b> · ${statLabel[bet.stat]} · L10 ${hitDisplay} · cushion ${cushion}</div>
       </div>
       <div class="pl-right">
         <span class="pl-line">${bet.line}</span>
@@ -2170,18 +2281,32 @@ function renderBestBets() {
   const parlayCard = (legs, label, emoji, color) => {
     if(legs.length < 2) return '';
     const avg = Math.round(legs.reduce((a,b)=>a+b.score,0)/legs.length);
+    // Register data for the copy button
+    const parlayId = `regular-${legs.length}`;
+    window.PARLAY_DATA[parlayId] = {
+      type: 'regular',
+      title: `${legs.length}-Leg Parlay`,
+      legs: legs.map(b => ({
+        player: b.p.name,
+        team: b.p.team,
+        bet: `${b.line} ${b.side.toUpperCase()} ${statLabel[b.stat]}`,
+        detail: `score ${b.score}/100 · cushion ${b.dL10>0?'+':''}${b.dL10.toFixed(1)}`
+      })),
+      summary: `Source: NEST regular scorer\nAvg confidence: ${avg}/100`
+    };
     return `<div class="top-parlay" style="border-color:${color}88;background:linear-gradient(135deg,${color}15,${color}05)">
       <div class="top-parlay-hdr" style="background:${color}18;border-color:${color}30">
-        <span class="top-parlay-title" style="color:${color}">${emoji} ${label}</span>
-        <span class="top-parlay-subtitle">${legs.length} legs · avg ${avg}/100</span>
+        <span class="top-parlay-title" style="color:${color}">${emoji} ${legs.length}-LEG PARLAY</span>
+        <span style="display:flex;align-items:center;gap:6px">
+          <span class="top-parlay-subtitle">avg ${avg}/100</span>
+          <button class="parlay-copy-btn" onclick="copyParlayToObsidian('${parlayId}')" title="Copy to Obsidian">📋</button>
+        </span>
       </div>
       <div class="top-parlay-legs">${legs.map(parlayRow).join('')}</div>
     </div>`;
   };
 
-  const p3Html = parlayCard(parlay3, '3-LEG PARLAY', '🎯', 'var(--accent)');
-  const p5Html = parlayCard(parlay5, '5-LEG PARLAY', '🔥', '#f59e0b');
-  const p8Html = parlayCard(parlay8, '8-LEG PARLAY', '🚀', '#c084fc');
+  const p8Html = parlayCard(parlay8, '', '🚀', '#c084fc');
 
   // ── Other Lock candidates ────────────────────────────
   const rankClass = i => i===0?'r1':i===1?'r2':i===2?'r3':'';
@@ -2228,7 +2353,7 @@ function renderBestBets() {
     },
     reb: (avg) => {
       if(avg===null) return [];
-      if(avg < 4) return [2, 4, 6, 8];
+      if(avg < 4) return [4, 6, 8];
       if(avg < 7) return [4, 6, 8, 10];
       if(avg < 10) return [6, 8, 10, 12];
       return [8, 10, 12, 14];
@@ -2236,9 +2361,9 @@ function renderBestBets() {
     ast: (avg) => {
       if(avg===null) return [];
       if(avg < 3) return [2, 4, 6, 8];
-      if(avg < 5) return [3, 5, 7, 9];
-      if(avg < 8) return [5, 7, 9, 11];
-      return [7, 9, 11, 13];
+      if(avg < 5) return [4, 6, 8, 10];
+      if(avg < 8) return [6, 8, 10, 12];
+      return [8, 10, 12];
     }
   };
   const statLabel2 = {pts:'PTS', reb:'REB', ast:'AST'};
@@ -2295,15 +2420,480 @@ function renderBestBets() {
     </div>`;
   };
 
-  const floorLocksHtml = topFloorLocks.length
-    ? `<div class="bb-section-hdr">🏰 FLOOR LOCKS · ${topFloorLocks.length} OF ${playerFloorLocks.length}</div>` +
-      topFloorLocks.map((item,i)=>floorLockRow(item,i)).join('')
+  const floorLocksHtml = ''; // REMOVED — replaced by EDGE system below
+
+  // ══════════════════════════════════════════════════════
+  // EDGE SYSTEM — third-option scorer using Z-score + worst-3 floor
+  // Independent from existing scorer and vault parlays
+  // ══════════════════════════════════════════════════════
+  const edgeMinGames = EDGE_STRICT ? 15 : 10;
+  // Per-stat thresholds — rebounds/assists have smaller std devs in absolute terms
+  // so the same Z gate that works for points is too strict here
+  const edgeGates = EDGE_STRICT ? {
+    pts: {minZ: 1.5, minWorstMargin: 0},
+    reb: {minZ: 1.0, minWorstMargin: -0.5},
+    ast: {minZ: 1.0, minWorstMargin: -0.5}
+  } : {
+    pts: {minZ: 1.0, minWorstMargin: -1.5},
+    reb: {minZ: 0.7, minWorstMargin: -1.0},
+    ast: {minZ: 0.7, minWorstMargin: -1.0}
+  };
+
+  // Same per-player tier ranges as the card floor signals
+  const edgeTiersFor = {
+    pts: (avg) => {
+      if(avg === null) return [];
+      if(avg < 15) return [5, 10, 15, 20, 25, 30];
+      if(avg < 20) return [10, 15, 20, 25, 30];
+      if(avg < 30) return [15, 20, 25, 30];
+      return [20, 25, 30];
+    },
+    reb: (avg) => {
+      if(avg === null) return [];
+      if(avg < 4) return [4, 6, 8];
+      if(avg < 7) return [4, 6, 8, 10];
+      if(avg < 10) return [6, 8, 10, 12];
+      return [8, 10, 12, 14];
+    },
+    ast: (avg) => {
+      if(avg === null) return [];
+      if(avg < 3) return [2, 4, 6, 8];
+      if(avg < 5) return [4, 6, 8, 10];
+      if(avg < 8) return [6, 8, 10, 12];
+      return [8, 10, 12];
+    }
+  };
+  const edgeStatLabel = {pts:'PTS', reb:'REB', ast:'AST'};
+
+  // For a given player+stat, find the best line by Z-score (over 1.0 + worst-3 ≥ 0)
+  // Considers both the standard sportsbook line and the alt-tier floor lines
+  const findBestEdgePick = (p, stat) => {
+    if(!p.allGames || p.allGames.length < edgeMinGames) return null;
+    const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+    if(vals.length < edgeMinGames) return null;
+
+    const mean = vals.reduce((a,b)=>a+b,0) / vals.length;
+    const variance = vals.reduce((a,b)=>a+Math.pow(b-mean,2),0) / vals.length;
+    const stdDev = Math.sqrt(variance);
+    if(stdDev < 0.5) return null; // skip near-zero std (insufficient variation)
+
+    // Build candidate lines: standard sportsbook line (if exists) + all alt-tiers
+    // Alt-tiers are filtered to only those the player has hit at least once
+    // in their last 20 games — prevents nonsense like "Conley 30+ pts"
+    const candidates = [];
+    const standardLine = getLine(p, stat);
+    if(standardLine !== null){
+      candidates.push({line: standardLine, isStandard: true, sideAllowed: 'both'});
+    }
+    const tiers = edgeTiersFor[stat](p.stats[stat]);
+    for(const tier of tiers){
+      // Only include tier if player has hit it at least once recently
+      // AND if the tier is below their max — prevents extrapolating to unreachable tiers
+      const hits = vals.filter(v => v >= tier).length;
+      if(hits < 1) continue;
+      candidates.push({line: tier, isStandard: false, tier, sideAllowed: 'over'});
+    }
+    if(!candidates.length) return null;
+
+    // For each candidate, compute Z-score for both over and under sides
+    // Pick the side with the higher Z, then keep only candidates passing both gates
+    const sortedVals = [...vals].sort((a,b)=>a-b);
+    const worst3Lo = sortedVals.slice(0, 3);                       // lowest 3 (for over bets)
+    const worst3Hi = sortedVals.slice(-3);                         // highest 3 (for under bets)
+    const lowFloor = worst3Lo.reduce((a,b)=>a+b,0) / worst3Lo.length; // avg of worst 3 lows
+    const highCeil = worst3Hi.reduce((a,b)=>a+b,0) / worst3Hi.length; // avg of worst 3 highs
+
+    let best = null;
+    for(const c of candidates){
+      // Over side
+      const zOver = (mean - c.line) / stdDev;
+      const overWorst = lowFloor - c.line; // positive = even worst games beat the line
+      // Under side
+      const zUnder = (c.line - mean) / stdDev;
+      const underWorst = c.line - highCeil; // positive = even highest games stay under
+
+      // Determine valid side based on candidate type
+      // Alt-tier candidates: OVER only (you can't bet "under 30+ pts")
+      // Standard line: both sides allowed
+      let useOver, z, worstMargin, side;
+      if(c.sideAllowed === 'over'){
+        useOver = true;
+        z = zOver;
+        worstMargin = overWorst;
+        side = 'over';
+      } else {
+        useOver = zOver >= zUnder;
+        z = useOver ? zOver : zUnder;
+        worstMargin = useOver ? overWorst : underWorst;
+        side = useOver ? 'over' : 'under';
+      }
+
+      // Hard gates: per-stat thresholds (rebounds/assists have lower bars due to scale)
+      const gates = edgeGates[stat];
+      if(z < gates.minZ) continue;
+      if(worstMargin < gates.minWorstMargin) continue;
+
+      // Highest TIER wins (most aggressive bet still passing gates)
+      // Tiebreaker: higher Z, then prefer standard line
+      const isBetter = !best
+        || c.line > best.line
+        || (c.line === best.line && z > best.z)
+        || (c.line === best.line && Math.abs(z - best.z) < 0.05 && c.isStandard && !best.isStandard);
+
+      if(isBetter){
+        const score = Math.min(100, Math.round(z * 50 + worstMargin * 5));
+        // Stat-aware label thresholds (rebounds/assists need lower thresholds)
+        const strongTh = stat === 'pts' ? 2.0 : 1.5;
+        const mediumTh = stat === 'pts' ? 1.5 : 1.0;
+        const label = z >= strongTh ? 'STRONG' : z >= mediumTh ? 'MEDIUM' : 'MILD';
+        best = {
+          stat, line: c.line, side, z, worstMargin, score, label,
+          isStandard: !!c.isStandard, tier: c.tier || null,
+          mean, stdDev, p
+        };
+      }
+    }
+    return best;
+  };
+
+  // Build pool: best pick per player per stat
+  const edgePool = [];
+  for(const p of players){
+    for(const stat of ['pts','reb','ast']){
+      const pick = findBestEdgePick(p, stat);
+      if(pick) edgePool.push(pick);
+    }
+  }
+  // Sort by score descending — highest Z first
+  edgePool.sort((a,b) => b.score - a.score);
+
+  // Top edge pick + parlays — top N by score, whatever stats qualify
+  const edgeTop = edgePool[0] || null;
+  const edge8 = edgePool.slice(0, 8);
+
+  // Render a single edge leg
+  const edgeLegRow = (pick) => {
+    // For alt-tier picks, lineDisplay already includes stat name (e.g. "20+ PTS")
+    // For standard line, show line + side + stat (e.g. "8.5 OVER PTS")
+    const lineDisplay = pick.isStandard
+      ? `${pick.line} ${pick.side.toUpperCase()} ${edgeStatLabel[pick.stat]}`
+      : `${pick.line}+ ${edgeStatLabel[pick.stat]}`;
+    const labelColor = pick.label==='STRONG' ? '#22c55e' : pick.label==='MEDIUM' ? '#86efac' : '#f59e0b';
+    return `<div class="edge-leg">
+      <div class="edge-leg-info">
+        <div class="edge-leg-name">${pick.p.name}</div>
+        <div class="edge-leg-meta"><b>${pick.p.team}</b> · ${pick.p.pos} · ${pick.p.game}</div>
+        <div class="edge-leg-bet">${lineDisplay}</div>
+      </div>
+      <div class="edge-leg-stats">
+        <div class="edge-leg-z" style="color:${labelColor}">Z ${pick.z.toFixed(2)}</div>
+        <div class="edge-leg-label" style="color:${labelColor}">${pick.label}</div>
+        <div class="edge-leg-floor">floor +${pick.worstMargin.toFixed(1)}</div>
+      </div>
+    </div>`;
+  };
+
+  // Top edge pick card
+  const edgeTopHtml = ''; // Top Edge Pick removed — only parlay shown
+
+  // Edge parlay cards
+  const edgeCard = (legs, n, color) => {
+    if(legs.length < 2) return '';
+    const slice = legs.slice(0, n);
+    const minZ = Math.min(...slice.map(l=>l.z));
+    // Register data for the copy button
+    const parlayId = `edge-${slice.length}`;
+    window.PARLAY_DATA[parlayId] = {
+      type: 'edge',
+      title: `${slice.length}-Leg Edge Parlay`,
+      legs: slice.map(p => ({
+        player: p.p.name,
+        team: p.p.team,
+        bet: p.isStandard
+          ? `${p.line} ${p.side.toUpperCase()} ${edgeStatLabel[p.stat]}`
+          : `${p.line}+ ${edgeStatLabel[p.stat]}`,
+        detail: `Z ${p.z.toFixed(2)} · ${p.label} · floor +${p.worstMargin.toFixed(1)}`
+      })),
+      summary: `Source: EDGE Z-score (${EDGE_STRICT?'STRICT':'LOOSE'} mode)\nMin Z in this parlay: ${minZ.toFixed(2)}`
+    };
+    return `<div class="edge-parlay" style="border-color:${color}55">
+      <div class="edge-parlay-hdr" style="background:${color}15;border-color:${color}30">
+        <span class="edge-parlay-title" style="color:${color}">⚡ ${slice.length}-LEG EDGE PARLAY</span>
+        <span style="display:flex;align-items:center;gap:6px">
+          <span class="edge-parlay-sub">min Z ${minZ.toFixed(2)}</span>
+          <button class="parlay-copy-btn" onclick="copyParlayToObsidian('${parlayId}')" title="Copy to Obsidian">📋</button>
+        </span>
+      </div>
+      <div class="edge-parlay-legs">${slice.map(edgeLegRow).join('')}</div>
+    </div>`;
+  };
+
+  const edgeParlaysHtml = edgeCard(edge8, 8, '#3b82f6');
+
+  // Toggle button for strict/loose mode
+  const edgeToggleHtml = `<button class="edge-toggle" onclick="toggleEdgeStrict()">
+    ${EDGE_STRICT ? 'STRICT' : 'LOOSE'} · click to switch
+  </button>`;
+
+  const edgeSectionHtml = (edgeTopHtml || edgeParlaysHtml)
+    ? `<div class="bb-section-hdr" style="margin-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+        <span>⚡ EDGE · Z-SCORE PICKS</span>
+        ${edgeToggleHtml}
+      </div>` + edgeTopHtml + edgeParlaysHtml
+    : `<div class="bb-section-hdr" style="margin-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+        <span>⚡ EDGE · Z-SCORE PICKS</span>
+        ${edgeToggleHtml}
+      </div>
+      <div class="edge-empty">No qualifying picks · ${EDGE_STRICT ? 'STRICT mode requires Z≥1.5 and floor ≥0 — try LOOSE mode for more picks' : 'even LOOSE mode found nothing — likely no lines posted yet or insufficient game data'}</div>`;
+
+  // ══════════════════════════════════════════════════════
+  // VAULT PARLAYS — fully isolated from existing system
+  // Uses the SAME per-player tier ranges as the card floor signals, so vault
+  // picks always match the bettable tiers shown on the player's card.
+  const vaultTiersFor = {
+    pts: (avg) => {
+      if(avg === null) return [];
+      if(avg < 15) return [5, 10, 15, 20, 25, 30];
+      if(avg < 20) return [10, 15, 20, 25, 30];
+      if(avg < 30) return [15, 20, 25, 30];
+      return [20, 25, 30];
+    },
+    reb: (avg) => {
+      if(avg === null) return [];
+      if(avg < 4) return [4, 6, 8];
+      if(avg < 7) return [4, 6, 8, 10];
+      if(avg < 10) return [6, 8, 10, 12];
+      return [8, 10, 12, 14];
+    },
+    ast: (avg) => {
+      if(avg === null) return [];
+      if(avg < 3) return [2, 4, 6, 8];
+      if(avg < 5) return [4, 6, 8, 10];
+      if(avg < 8) return [6, 8, 10, 12];
+      return [8, 10, 12];
+    }
+  };
+  const vaultStatLabel = {pts:'PTS', reb:'REB', ast:'AST'};
+
+  // For each player+stat, find the highest tier with streak >= minStreak
+  // Tiers are PER-PLAYER based on season average (matches card display)
+  const findVaultPick = (p, stat, minStreak) => {
+    if(!p.allGames || !p.allGames.length) return null;
+    const vals = p.allGames.map(g=>g[stat]).filter(v=>v!==null);
+    if(!vals.length) return null;
+    const tiers = vaultTiersFor[stat](p.stats[stat]);
+    if(!tiers.length) return null;
+    let bestPick = null;
+    for(const tier of tiers){
+      let streak = 0;
+      for(let i=vals.length-1; i>=0; i--){
+        if(vals[i] >= tier) streak++;
+        else break;
+      }
+      if(streak >= minStreak){
+        if(!bestPick || tier > bestPick.tier){
+          // Stability metrics across the streak window
+          const streakVals = vals.slice(-streak);
+          const avgMargin = streakVals.reduce((a,b)=>a+(b-tier),0) / streakVals.length;
+          // "Near miss" = game that cleared tier by 0 or 1 (basically tied/just over)
+          const nearMisses = streakVals.filter(v => v - tier <= 1).length;
+          const nearMissPct = Math.round((nearMisses / streakVals.length) * 100);
+          // Risk warnings (display only — don't filter the pick)
+          const warnings = [];
+          if(p.blowoutRisk) warnings.push({type:'blowout', label:'BLOWOUT'});
+          if(p.minsTrend !== null && p.minsTrend < -4) warnings.push({type:'mins', label:'MINS↓'});
+          if(p.restDays === 0) warnings.push({type:'b2b', label:'B2B'});
+          // Opponent rank context for points (top defense = warning)
+          if(stat==='pts' && p.oppDefRank !== null && p.oppDefRank <= 5){
+            warnings.push({type:'def', label:'TOUGH D'});
+          }
+          // Stability rating: margin/tier ratio
+          // High margin = comfortable, low margin = fragile
+          const marginRatio = avgMargin / tier;
+          let stability;
+          if(marginRatio >= 0.5) stability = 'solid';      // 50%+ above tier on average
+          else if(marginRatio >= 0.25) stability = 'ok';   // 25-50% above
+          else if(marginRatio >= 0.1) stability = 'thin';  // barely clearing
+          else stability = 'fragile';                      // hugging the tier
+
+          bestPick = {tier, streak, stat, p, avgMargin, nearMissPct, warnings, stability};
+        }
+      }
+    }
+    return bestPick;
+  };
+
+  // Build pool of all qualifying picks at a given streak threshold
+  const buildVaultPool = (minStreak) => {
+    const pool = [];
+    for(const p of players){
+      for(const stat of ['pts','reb','ast']){
+        const pick = findVaultPick(p, stat, minStreak);
+        if(pick) pool.push(pick);
+      }
+    }
+    // Sort by streak length descending — longer streak = safer leg
+    pool.sort((a,b) => b.streak - a.streak);
+    return pool;
+  };
+
+  const vaultStandard = buildVaultPool(10);
+  const vaultStrong   = buildVaultPool(15);
+  const vaultElite    = buildVaultPool(20);
+
+  // Render a single vault leg row with warnings and stability indicator
+  const vaultLegRow = (pick) => {
+    const warnHtml = pick.warnings.length
+      ? `<span class="vault-warns">${pick.warnings.map(w=>`<span class="vault-warn vault-warn-${w.type}" title="${w.type==='blowout'?'Spread ≥12 — blowout risk':w.type==='mins'?'Minutes trending down':w.type==='b2b'?'Back-to-back game':'Tough defensive matchup'}">⚠ ${w.label}</span>`).join('')}</span>`
+      : '';
+    const marginStr = pick.avgMargin >= 0 ? `+${pick.avgMargin.toFixed(1)}` : pick.avgMargin.toFixed(1);
+    const stabIcon = {solid:'●', ok:'●', thin:'◐', fragile:'○'}[pick.stability];
+    const stabLabel = {solid:'SOLID', ok:'OK', thin:'THIN', fragile:'FRAGILE'}[pick.stability];
+    const stabTitle = `Avg margin ${marginStr} above tier · ${pick.nearMissPct}% of games within 1 of tier`;
+
+    return `<div class="vault-leg vault-leg-${pick.stability}">
+      <div class="vault-leg-info">
+        <div class="vault-leg-name">${pick.p.name}</div>
+        <div class="vault-leg-meta"><b>${pick.p.team}</b> · ${pick.p.pos} · ${pick.p.game}</div>
+        ${warnHtml}
+      </div>
+      <div class="vault-leg-bet">
+        <div class="vault-leg-tier">${pick.tier}+ ${vaultStatLabel[pick.stat]}</div>
+        <div class="vault-leg-streak">🔒 ${pick.streak} STRAIGHT</div>
+        <div class="vault-leg-stab vault-stab-${pick.stability}" title="${stabTitle}">${stabIcon} ${stabLabel} ${marginStr}</div>
+      </div>
+    </div>`;
+  };
+
+  // Render a single vault parlay card
+  const vaultCard = (pool, n, tierLabel, minStreak, color) => {
+    if(pool.length < 2) return ''; // need at least 2 legs to be a parlay
+    const legs = pool.slice(0, n);
+    const minStreakLegs = Math.min(...legs.map(l=>l.streak));
+    // Register data for the copy button
+    const parlayId = `vault-${legs.length}`;
+    const statLabel = {pts:'PTS',reb:'REB',ast:'AST'};
+    window.PARLAY_DATA[parlayId] = {
+      type: 'vault',
+      title: `${legs.length}-Leg Vault`,
+      legs: legs.map(l => ({
+        player: l.p.name,
+        team: l.p.team,
+        bet: `${l.tier}+ ${statLabel[l.stat]}`,
+        detail: `🔒 ${l.streak} straight games · stability ${l.stability||'n/a'}`
+      })),
+      summary: `Source: Vault floor lock (${minStreak}+ game streaks)\nMin streak in this parlay: ${minStreakLegs}`
+    };
+    return `<div class="vault-parlay" style="border-color:${color}55">
+      <div class="vault-parlay-hdr" style="background:${color}15;border-color:${color}30">
+        <span class="vault-parlay-title" style="color:${color}">🏰 ${legs.length}-LEG VAULT</span>
+        <span style="display:flex;align-items:center;gap:6px">
+          <span class="vault-parlay-sub">${minStreak}+ streaks · floor ${minStreakLegs}</span>
+          <button class="parlay-copy-btn" onclick="copyParlayToObsidian('${parlayId}')" title="Copy to Obsidian">📋</button>
+        </span>
+      </div>
+      <div class="vault-parlay-legs">${legs.map(vaultLegRow).join('')}</div>
+    </div>`;
+  };
+
+  // Build all 9 vault parlays — skip if pool too small
+  const vaultStrongHtml = vaultCard(vaultStrong, 8, 'VAULT', 15, '#3b82f6');
+
+  const vaultSectionHtml = vaultStrongHtml
+    ? `<div class="bb-section-hdr" style="margin-top:18px">🏰 VAULT · FLOOR LOCK PARLAY</div>` +
+      vaultStrongHtml
     : '';
 
-  grid.innerHTML = lockHtml + p3Html + p5Html + p8Html + floorLocksHtml + othersHtml;
+  grid.innerHTML = lockHtml + p8Html + vaultSectionHtml + edgeSectionHtml;
 }
 
 // ── AEST Clock ────────────────────────────────────────
+// ── Copy parlay to clipboard as Obsidian markdown ─────
+// Stores parlay data globally so the button onclick can find it by ID
+window.PARLAY_DATA = {};
+
+function copyParlayToObsidian(parlayId){
+  const data = window.PARLAY_DATA[parlayId];
+  if(!data){ showToast('Parlay data not found'); return; }
+
+  const today = new Date().toISOString().slice(0,10);
+  const sourceMap = {
+    'regular': 'parlay',
+    'vault': 'vault',
+    'edge': 'edge'
+  };
+  const source = sourceMap[data.type] || data.type;
+
+  // Build YAML frontmatter
+  const yaml = `---
+date: ${today}
+type: parlay
+source: ${source}
+legs: ${data.legs.length}
+odds: 1.91
+stake: 10
+potential: 0
+result: pending
+legs_won: 0
+legs_lost: 0
+tags: [nba, parlay, nest]
+---`;
+
+  // Build legs section
+  let legsText = '';
+  data.legs.forEach((leg, i) => {
+    legsText += `- [ ] **${leg.player}** (${leg.team}) · ${leg.bet} · ${leg.detail}\n`;
+  });
+
+  // Build full note
+  const filename = `${today}-${data.type}-${data.legs.length}leg`;
+  const note = `${yaml}
+
+# ${data.title}
+
+## Parlay Summary
+**Type:** ${data.title}
+**Legs:** ${data.legs.length}
+**Total odds:** [fill in]
+**Stake:** $[fill in]
+**Potential payout:** $[fill in]
+
+## Legs
+${legsText}
+## NEST Source Data
+${data.summary}
+
+## Pre-Game Notes
+- Concerns:
+- Confidence level:
+
+## Result
+- Legs won: / ${data.legs.length}
+- Legs lost: 
+- Outcome: 
+- Lessons:
+`;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(note).then(() => {
+    showToast(`✓ Copied! Save as: ${filename}.md`);
+  }).catch(err => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = note;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(`✓ Copied! Save as: ${filename}.md`);
+  });
+}
+
+function toggleEdgeStrict(){
+  EDGE_STRICT = !EDGE_STRICT;
+  renderBestBets();
+}
+
 function startClock(){
   const el = document.getElementById('aest-clock');
   if(!el) return;
